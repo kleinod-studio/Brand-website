@@ -12,6 +12,7 @@ description: Typecase is a calm, native Markdown writing app for Linux, inspired
   <a class="button" href="#install">Get Typecase</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Typecase">Source code</a>
 </div>
+<p class="muted">Version 0.9.0 · <a href="https://github.com/kleinod-studio/Typecase/releases/tag/v0.9.0">Release notes</a></p>
 
 <img class="shot shot-light" src="/assets/typecase/screenshot-light.png" alt="Typecase with the library on the left, a sheet in the editor and the formatting bar" width="1600" height="1000">
 <img class="shot shot-dark" src="/assets/typecase/screenshot-dark.png" alt="Typecase in dark style" width="1600" height="1000">
@@ -43,11 +44,11 @@ description: Typecase is a calm, native Markdown writing app for Linux, inspired
 
 <h2 id="install">Install</h2>
 <div class="note">
-  <p>Typecase is in early development and not yet on Flathub. Until then, build it from source; it takes about a minute.</p>
+  <p>Typecase 0.9.0 is the first public release. It is not on Flathub yet; until version 1.0, build it from source. It takes about a minute.</p>
 </div>
 <p>You need <code>flatpak-builder</code> and the GNOME runtime:</p>
 <pre><code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51
-git clone https://github.com/kleinod-studio/Typecase.git
+git clone --branch v0.9.0 https://github.com/kleinod-studio/Typecase.git
 cd Typecase
 flatpak-builder --user --install --force-clean build-dir studio.kleinod.Typecase.yml</code></pre>
 <p>Run the last command again to update. Typecase then appears in your app launcher.</p>
