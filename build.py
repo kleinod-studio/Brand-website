@@ -19,13 +19,30 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 TYPECASE = Path.home() / "Development" / "Typecase"  # app repository next to this one
 
+# Footer links to the legal pages, in the language of the page (the German versions are binding).
+LEGAL_LINKS = {
+    "en": '<a href="/legal-notice/">Legal notice</a> · <a href="/privacy/">Privacy</a>',
+    "de": '<a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a>',
+}
+
+# Old addresses that now live elsewhere
+REDIRECTS = {"imprint/index.html": "/impressum/"}
+
+REDIRECT = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Moved</title>
+<meta http-equiv="refresh" content="0; url={target}"><link rel="canonical" href="{target}"></head>
+<body><p>This page has moved: <a href="{target}">{target}</a></p></body></html>
+"""
+
 # source fragment -> published page
 PAGES = {
     "index.html": "index.html",
     "typecase.html": "typecase/index.html",
     "typecase-templates.html": "typecase/templates/index.html",
-    "imprint.html": "imprint/index.html",
+    "legal-notice.html": "legal-notice/index.html",
     "privacy.html": "privacy/index.html",
+    "impressum.html": "impressum/index.html",
+    "datenschutz.html": "datenschutz/index.html",
     "404.html": "404.html",
 }
 
@@ -61,7 +78,7 @@ LAYOUT = """<!doctype html>
 <footer class="site-footer">
   <div class="wrap">
     <span>© 2026 Sascha Wübbena · kleinod.studio</span>
-    <span><a href="/imprint/">Impressum</a> · <a href="/privacy/">Datenschutz</a></span>
+    <span>{legal_links}</span>
   </div>
 </footer>
 </body>
@@ -98,8 +115,10 @@ def main() -> None:
     templates_guide()
     for source, target in PAGES.items():
         meta, content = read_fragment(SRC / source)
+        lang = meta.get("lang", "en")
         page = LAYOUT.format(
-            lang=meta.get("lang", "en"),
+            lang=lang,
+            legal_links=LEGAL_LINKS.get(lang, LEGAL_LINKS["en"]),
             title=html.escape(meta.get("title", "kleinod.studio")),
             description=html.escape(meta.get("description", "")),
             content=content.rstrip(),
@@ -108,6 +127,10 @@ def main() -> None:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(page, encoding="utf-8")
         print("wrote", target)
+    for target, url in REDIRECTS.items():
+        (ROOT / target).parent.mkdir(parents=True, exist_ok=True)
+        (ROOT / target).write_text(REDIRECT.format(target=url), encoding="utf-8")
+        print("redirect", target, "->", url)
     skill = TYPECASE / "dist" / "typecase-template.skill"
     if skill.is_file():
         shutil.copyfile(skill, ROOT / "downloads" / "typecase-template.skill")
