@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Export templates · Typecase</title>
+<meta name="description" content="How Typecase export templates work and how to build your own.">
+<meta property="og:title" content="Export templates · Typecase">
+<meta property="og:description" content="How Typecase export templates work and how to build your own.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="kleinod.studio home">
+      <img class="logo-light" src="/assets/kleinod-studio-logo-horizontal.svg" alt="kleinod.studio" width="230" height="34">
+      <img class="logo-dark" src="/assets/kleinod-studio-logo-horizontal-dark.svg" alt="kleinod.studio" width="230" height="34">
+    </a>
+    <nav aria-label="Main">
+      <a href="/typecase/">Typecase</a>
+      <a href="https://github.com/kleinod-studio">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="prose">
+<p class="muted"><a href="/typecase/">Typecase</a> › Export templates</p>
+<h1 id="custom-export-templates-for-typecase">Custom export templates
+for Typecase</h1>
+<p>Typecase exports sheets as PDF, Word document (DOCX), and web page
+(HTML). The <strong>template</strong> determines what the result looks
+like. A template is a single file with the extension
+<code>.typecase-template</code>. You can share it with others and load
+it in Typecase under <strong>Preferences → Templates → Import…</strong>.
+When exporting (Ctrl+E), you then pick it under “Template” in the export
+dialog, next to “Format”.</p>
+<p>This guide describes how a template is structured and how to build
+your own. The easiest way is the <strong>Claude skill
+“typecase-template”</strong>: you describe to Claude what your document
+should look like and get a finished template file. The skill can be
+downloaded from <a
+href="https://kleinod.studio/typecase">https://kleinod.studio/typecase</a>.
+If you prefer to do it by hand, you will find everything you need
+here.</p>
+<h2 id="quick-start-begin-with-an-existing-template">Quick start: begin
+with an existing template</h2>
+<ol type="1">
+<li>In Typecase, open <strong>Preferences → Templates</strong>.</li>
+<li>Next to “Text”, click <strong>Save as File…</strong>. You get
+<code>Text.typecase-template</code>.</li>
+<li>Rename the file to <code>Letter.typecase-template</code> (the file
+name becomes the template’s identifier).</li>
+<li>Open it with an archive manager (the file is a ZIP archive; if
+necessary, temporarily change the extension to <code>.zip</code>), edit
+the files inside, and pack them up again.</li>
+<li>Import it into Typecase and try it out.</li>
+</ol>
+<h2 id="what-a-template-contains">What a template contains</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>template.json</code></td>
+<td>yes</td>
+<td>Name, description, paper size, and margins for PDF</td>
+</tr>
+<tr>
+<td><code>template.html</code></td>
+<td>yes</td>
+<td>Skeleton for HTML and PDF (a Pandoc template)</td>
+</tr>
+<tr>
+<td><code>style.css</code></td>
+<td>no</td>
+<td>Styling for HTML and PDF</td>
+</tr>
+<tr>
+<td><code>reference.docx</code></td>
+<td>no</td>
+<td>Styles for Word; without it, Pandoc uses its default reference
+document</td>
+</tr>
+<tr>
+<td>other files</td>
+<td>no</td>
+<td>Fonts, logos, etc. referenced by <code>style.css</code></td>
+</tr>
+</tbody>
+</table>
+<p>All files sit at the top level of the archive (or together in exactly
+one folder inside it).</p>
+<h3 id="templatejson">template.json</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;en&quot;</span><span class="fu">:</span> <span class="st">&quot;Letter&quot;</span><span class="fu">,</span> <span class="dt">&quot;de&quot;</span><span class="fu">:</span> <span class="st">&quot;Brief&quot;</span><span class="fu">},</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;en&quot;</span><span class="fu">:</span> <span class="st">&quot;DIN 5008 business letter&quot;</span><span class="fu">,</span> <span class="dt">&quot;de&quot;</span><span class="fu">:</span> <span class="st">&quot;Geschäftsbrief nach DIN 5008&quot;</span><span class="fu">},</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;author&quot;</span><span class="fu">:</span> <span class="st">&quot;Your Name&quot;</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;pdf&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;paper&quot;</span><span class="fu">:</span> <span class="st">&quot;a4&quot;</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;margins_mm&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;top&quot;</span><span class="fu">:</span> <span class="dv">45</span><span class="fu">,</span> <span class="dt">&quot;right&quot;</span><span class="fu">:</span> <span class="dv">20</span><span class="fu">,</span> <span class="dt">&quot;bottom&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">,</span> <span class="dt">&quot;left&quot;</span><span class="fu">:</span> <span class="dv">25</span><span class="fu">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<ul>
+<li><strong>format</strong>: always <code>1</code>. Typecase rejects
+templates that require a newer version of the format.</li>
+<li><strong>name</strong> (required) and <strong>description</strong>:
+either plain text or one entry per language (<code>"de"</code>,
+<code>"en"</code>, …). Typecase shows the UI language if available,
+otherwise English.</li>
+<li><strong>author</strong>, <strong>version</strong>: informational
+only.</li>
+<li><strong>pdf.paper</strong>: <code>a4</code>, <code>a5</code>,
+<code>a3</code>, <code>letter</code>, or <code>legal</code>. If omitted,
+Typecase uses the usual paper size for the system locale.</li>
+<li><strong>pdf.margins_mm</strong>: page margins of the PDF in
+millimeters (0 to 100). Any side not specified gets 25 mm.</li>
+</ul>
+<p>Paper size and margins for <strong>Word</strong> are not set here but
+in <code>reference.docx</code> (page setup).</p>
+<h3 id="templatehtml">template.html</h3>
+<p>The skeleton is a <a
+href="https://pandoc.org/MANUAL.html#templates">Pandoc template</a>:
+plain HTML with placeholders enclosed in dollar signs. Typecase fills
+them in during export.</p>
+<p>These are essential:</p>
+<ul>
+<li><code>$body$</code>: the text of the sheet. Typecase rejects a
+template without it.</li>
+<li><code>$for(header-includes)$$header-includes$$endfor$</code> in the
+<code>&lt;head&gt;</code>: this is where Typecase embeds
+<code>style.css</code>. If this line is missing, your CSS is not
+applied.</li>
+</ul>
+<p>Other placeholders:</p>
+<table>
+<thead>
+<tr>
+<th>Placeholder</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$title$</code>, <code>$subtitle$</code></td>
+<td>Title and subtitle from the sheet’s properties</td>
+</tr>
+<tr>
+<td><code>$for(author)$$author$$endfor$</code></td>
+<td>Author; if the sheet has none, the default from Preferences</td>
+</tr>
+<tr>
+<td><code>$date$</code></td>
+<td>Date from the <code>date</code> field in the front matter, otherwise
+the export date</td>
+</tr>
+<tr>
+<td><code>$lang$</code></td>
+<td>Language, e.g. <code>de-DE</code> (for
+<code>&lt;html lang="…"&gt;</code>, important for hyphenation)</td>
+</tr>
+<tr>
+<td><code>$pagetitle$</code></td>
+<td>Window title if the sheet has no title (the sheet name)</td>
+</tr>
+<tr>
+<td><code>$created$</code>, <code>$status$</code>,
+<code>$keywords$</code>, …</td>
+<td>any other field from the sheet’s front matter</td>
+</tr>
+<tr>
+<td><code>$if(pdf)$…$endif$</code></td>
+<td>PDF export only; the bundled template uses it to set
+<code>&lt;body class="pdf"&gt;</code></td>
+</tr>
+<tr>
+<td><code>$highlighting-css$</code></td>
+<td>Colors for code blocks</td>
+</tr>
+</tbody>
+</table>
+<p>Conditionals:
+<code>$if(subtitle)$&lt;p class="subtitle"&gt;$subtitle$&lt;/p&gt;$endif$</code>.</p>
+<p>A complete, minimal skeleton:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;$lang$&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;utf-8&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>$if(title-meta)$$title-meta$$else$$pagetitle$$endif$<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>$if(highlighting-css)$<span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span>$highlighting-css$<span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span>$endif$</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>$for(header-includes)$</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>$header-includes$</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>$endfor$</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="er">$</span><span class="ot">if(pdf)</span><span class="er">$</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;pdf&quot;</span><span class="er">$</span><span class="ot">endif</span><span class="er">$</span><span class="dt">&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>$if(title)$</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">header</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;title-block&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;title&quot;</span><span class="dt">&gt;</span>$title$<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>$if(subtitle)$<span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;subtitle&quot;</span><span class="dt">&gt;</span>$subtitle$<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span>$endif$</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>$endif$</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>$body$</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="stylecss">style.css</h3>
+<p>Applies to both HTML and PDF. Some tips:</p>
+<ul>
+<li><strong>Distinguish print from screen</strong>: in the PDF,
+<code>&lt;body&gt;</code> has the class <code>pdf</code> (if the
+skeleton sets it). The web page may have a limited line length and outer
+margins; in the PDF, the paper size and margins from
+<code>template.json</code> determine the width, so use
+<code>max-width: none; margin: 0;</code> there.</li>
+<li><strong>Scope text rules to <code>main</code></strong>: the skeleton
+places the title block outside <code>&lt;main&gt;</code> and the sheet’s
+text inside it, and the title is also an <code>h1</code> heading. So
+write <code>main h1</code>, <code>main p</code>, and so on. Otherwise
+the PDF starts with a blank page (the page break before the title), or
+paragraph rules override the alignment of the title block.</li>
+<li><strong>Page breaks</strong>:
+<code>main h1 { break-before: page; }</code> to start chapters on a new
+page, <code>.title-block { break-after: page; }</code> for a separate
+title page, <code>break-after: avoid</code> for headings,
+<code>orphans</code>/<code>widows</code> to prevent single stranded
+lines.</li>
+<li><strong>Page numbers and headers</strong> are currently not
+available in PDF (Typecase prints with WebKit, which does not fill these
+page margin areas). In Word documents, you can add them via
+<code>reference.docx</code>.</li>
+<li><strong>Fonts</strong>: rely only on widely available fonts (e.g.
+“Liberation Serif”, “DejaVu Serif”, “Noto Sans”) or embed your own: put
+the font file in the archive and include it with
+<code>@font-face { font-family: "MyFont"; src: url("fonts/MyFont-Regular.woff2"); }</code>.
+Typecase embeds files referenced by <code>url(…)</code> in HTML and PDF.
+Mind the font’s license.</li>
+<li><strong>Images</strong> (such as a logo) work the same way:
+<code>background-image: url("logo.svg")</code>.</li>
+<li>References to files outside the template and internet addresses are
+left unchanged; Typecase does not download anything from the
+network.</li>
+</ul>
+<p>Here is what Typecase turns Markdown into, so you can style it:</p>
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>HTML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code># Heading</code> through <code>######</code></td>
+<td><code>h1</code> … <code>h6</code></td>
+</tr>
+<tr>
+<td><code>**bold**</code>, <code>*italic*</code>,
+<code>~~strikethrough~~</code></td>
+<td><code>strong</code>, <code>em</code>, <code>del</code></td>
+</tr>
+<tr>
+<td><code>&lt;u&gt;underlined&lt;/u&gt;</code></td>
+<td><code>u</code></td>
+</tr>
+<tr>
+<td><code>&gt; Quote</code></td>
+<td><code>blockquote</code></td>
+</tr>
+<tr>
+<td>Lists</td>
+<td><code>ul</code>, <code>ol</code>, <code>li</code></td>
+</tr>
+<tr>
+<td><code>`code`</code>, code blocks</td>
+<td><code>code</code>, <code>pre</code></td>
+</tr>
+<tr>
+<td>Title block (from the properties)</td>
+<td><code>.title-block</code>, <code>.title</code>,
+<code>.subtitle</code>, <code>.author</code> (if the skeleton names them
+that way)</td>
+</tr>
+</tbody>
+</table>
+<p>Every line in the editor stays a separate line in the export
+(<code>&lt;br&gt;</code>); paragraphs are separated by a blank line.</p>
+<h3 id="referencedocx">reference.docx</h3>
+<p>For Word, Pandoc uses the styles of a reference document: font and
+size of “Normal”, “Heading 1”, and so on, page size, and margins. Pandoc
+does not take over the content of the reference document, only its
+look.</p>
+<p>To create one:</p>
+<ol type="1">
+<li>Get Pandoc’s default:
+<code>pandoc -o reference.docx --print-default-data-file reference.docx</code></li>
+<li>Open it in LibreOffice or Word and change the
+<strong>styles</strong> (do not format the text directly):
+“Normal”/“Body Text”, “Heading 1–3”, “Title”, “Subtitle”, “Block Text”
+(quotes), “Source Code”. Set page margins under Format → Page
+Style.</li>
+<li>Save it as DOCX and put it in the archive.</li>
+</ol>
+<p>Without a word processor, you can use the <code>style_docx.py</code>
+script from the Claude skill: it sets fonts, sizes, line spacing,
+indentation, paper size, and margins, and can optionally add page
+numbers and a small letterhead
+(<code>python3 style_docx.py --help</code>).</p>
+<p>In Word documents, Pandoc always writes the title, subtitle, and
+author as the first paragraphs before the text; freely positioned areas
+from the HTML (such as an address field) cannot be reproduced in
+Word.</p>
+<h2 id="checking-and-sharing">Checking and sharing</h2>
+<p>On import, Typecase checks the file and reports clearly what is
+missing. It also rejects archives that try to create files outside their
+folder, contain links, or are larger than 50 MB. An installed template
+with the same file name is replaced after confirmation.</p>
+<p>You can share the <code>.typecase-template</code> file as is.
+Imported templates are available on the computer where you imported
+them.</p>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Sascha Wübbena · kleinod.studio</span>
+    <span><a href="/imprint/">Impressum</a> · <a href="/privacy/">Datenschutz</a></span>
+  </div>
+</footer>
+</body>
+</html>

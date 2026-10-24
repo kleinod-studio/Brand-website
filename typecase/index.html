@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typecase · Calm Markdown writing for Linux</title>
+<meta name="description" content="Typecase is a calm, native Markdown writing app for Linux, inspired by Ulysses. Plain files, no account, no network.">
+<meta property="og:title" content="Typecase · Calm Markdown writing for Linux">
+<meta property="og:description" content="Typecase is a calm, native Markdown writing app for Linux, inspired by Ulysses. Plain files, no account, no network.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="kleinod.studio home">
+      <img class="logo-light" src="/assets/kleinod-studio-logo-horizontal.svg" alt="kleinod.studio" width="230" height="34">
+      <img class="logo-dark" src="/assets/kleinod-studio-logo-horizontal-dark.svg" alt="kleinod.studio" width="230" height="34">
+    </a>
+    <nav aria-label="Main">
+      <a href="/typecase/">Typecase</a>
+      <a href="https://github.com/kleinod-studio">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<section class="hero-app">
+  <img src="/assets/typecase/icon.svg" alt="" width="128" height="128">
+  <div>
+    <h1>Typecase</h1>
+    <p class="lead">Calm Markdown writing for Linux. Your texts stay plain <code>.md</code> files in a folder of your choice.</p>
+  </div>
+</section>
+<div class="buttons">
+  <a class="button" href="#install">Get Typecase</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Typecase">Source code</a>
+</div>
+
+<img class="shot shot-light" src="/assets/typecase/screenshot-light.png" alt="Typecase with the library on the left, a sheet in the editor and the formatting bar" width="1600" height="1000">
+<img class="shot shot-dark" src="/assets/typecase/screenshot-dark.png" alt="Typecase in dark style" width="1600" height="1000">
+
+<h2>Writing, without distractions</h2>
+<div class="cards">
+  <div class="card"><h3>A library of plain files</h3><p>Any folder becomes your library; subfolders are groups. No database, no proprietary format. Sync it with Nextcloud or Syncthing if you like.</p></div>
+  <div class="card"><h3>Markdown, styled as you type</h3><p>Headings, emphasis, lists and code look the way they will. A floating formatting bar helps if you'd rather not learn the syntax.</p></div>
+  <div class="card"><h3>Focus mode</h3><p>Full screen with only your text. Typewriter scrolling keeps the current line centered, and the rest of the text fades back.</p></div>
+  <div class="card"><h3>Goals and keywords</h3><p>Set a word goal per sheet and watch the progress rings fill. Tag sheets with keywords and filter your library by them.</p></div>
+  <div class="card"><h3>Your text is safe</h3><p>Every change is saved automatically and atomically. If another program changes a file, Typecase never overwrites what you typed.</p></div>
+  <div class="card"><h3>Private</h3><p>No account, no telemetry, no network access. The Flatpak doesn't even have network permission.</p></div>
+</div>
+
+<h2>Export with templates</h2>
+<p>Typecase exports to PDF, Word (DOCX) and HTML through Pandoc. How the result looks is decided by a template: a single <code>.typecase-template</code> file you import under <em>Preferences → Templates</em>. One template covers all three formats.</p>
+<div class="cards">
+  <div class="card">
+    <h3>Build your own templates</h3>
+    <p>The guide explains the format: description, HTML template, CSS and Word styles.</p>
+    <p><a href="/typecase/templates/">Read the template guide</a></p>
+  </div>
+  <div class="card">
+    <h3>Or let Claude build them</h3>
+    <p>The <code>typecase-template</code> skill turns a description such as “a manuscript for my editor with a wide margin” into a ready-to-import template. Upload it under Claude's skill settings, then ask for a Typecase template.</p>
+    <p><a href="/downloads/typecase-template.skill" download>Download the skill</a></p>
+  </div>
+</div>
+
+<h2 id="install">Install</h2>
+<div class="note">
+  <p>Typecase is in early development and not yet on Flathub. Until then, build it from source; it takes about a minute.</p>
+</div>
+<p>You need <code>flatpak-builder</code> and the GNOME runtime:</p>
+<pre><code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51
+git clone https://github.com/kleinod-studio/Typecase.git
+cd Typecase
+flatpak-builder --user --install --force-clean build-dir studio.kleinod.Typecase.yml</code></pre>
+<p>Run the last command again to update. Typecase then appears in your app launcher.</p>
+
+<h2>Get involved</h2>
+<p>Typecase is free software under the GPL-3.0-or-later. Found a bug or have an idea? <a href="https://github.com/kleinod-studio/Typecase/issues">Open an issue</a>. See the <a href="https://github.com/kleinod-studio/Typecase/blob/main/ROADMAP.md">roadmap</a> for what's done and what comes next.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Sascha Wübbena · kleinod.studio</span>
+    <span><a href="/imprint/">Impressum</a> · <a href="/privacy/">Datenschutz</a></span>
+  </div>
+</footer>
+</body>
+</html>
