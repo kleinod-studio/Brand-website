@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor themes · Typecase</title>
+<meta name="description" content="How Typecase editor themes work and how to build your own.">
+<meta property="og:title" content="Editor themes · Typecase">
+<meta property="og:description" content="How Typecase editor themes work and how to build your own.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="kleinod.studio home">
+      <img class="logo-light" src="/assets/kleinod-studio-logo-horizontal.svg" alt="kleinod.studio" width="230" height="34">
+      <img class="logo-dark" src="/assets/kleinod-studio-logo-horizontal-dark.svg" alt="kleinod.studio" width="230" height="34">
+    </a>
+    <nav aria-label="Main">
+      <a href="/typecase/">Typecase</a>
+      <a href="https://github.com/kleinod-studio">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="prose">
+<p class="muted"><a href="/typecase/">Typecase</a> › Editor themes</p>
+<h1 id="custom-editor-themes-for-typecase">Custom editor themes for
+Typecase</h1>
+<p>An editor theme decides the colors of the writing area: page
+background, text, the faint Markdown marks, links, headings, and code.
+Every theme except “Standard” also tints the rest of the window to
+match, so the sidebar, header bars, and menus become shades of the same
+colors.</p>
+<p>You choose a theme under <strong>Preferences → Writing</strong>, in
+the tiles below “Style”. Each theme has a light and a dark variant, and
+Typecase picks the one that fits the current style (follow system,
+light, or dark). Focus mode can have a theme of its own once “Use Editor
+Settings” is switched off.</p>
+<p>A theme is not a Typecase invention: it is a <strong>GtkSourceView
+style scheme</strong>, an XML file in the format that GNOME Text Editor
+and GNOME Builder use. You can import schemes made for those programs,
+or build your own.</p>
+<h2 id="quick-start-begin-with-a-built-in-theme">Quick start: begin with
+a built-in theme</h2>
+<ol type="1">
+<li>In Typecase, open <strong>Preferences → Writing</strong> and scroll
+to <strong>Editor Themes</strong>.</li>
+<li>Next to a built-in theme, for example “Paper”, click <strong>Save as
+File…</strong> and choose a folder. You get two files:
+<code>Paper (custom).xml</code> and
+<code>Paper (custom) (dark).xml</code>.</li>
+<li>Open them in a text editor and change the colors. Every line has a
+comment that says what it colors.</li>
+<li>Back in <strong>Editor Themes</strong>, click
+<strong>Import…</strong> and select both files at once.</li>
+<li>The theme appears as a new tile. Click it to use it.</li>
+</ol>
+<p>The saved files already have their own ID, so they import next to the
+original instead of replacing it. Change the <code>name</code> attribute
+if you want a different name on the tile.</p>
+<h2 id="what-a-theme-file-contains">What a theme file contains</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">style-scheme</span> <span class="ot">id=</span><span class="st">&quot;my-paper&quot;</span> <span class="ot">name=</span><span class="st">&quot;My Paper&quot;</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">parent-scheme=</span><span class="st">&quot;Adwaita&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">metadata</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">property</span> <span class="ot">name=</span><span class="st">&quot;variant&quot;</span>&gt;light&lt;/<span class="kw">property</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">property</span> <span class="ot">name=</span><span class="st">&quot;dark-variant&quot;</span>&gt;my-paper-dark&lt;/<span class="kw">property</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">metadata</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;text&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#4A3F35&quot;</span> <span class="ot">background=</span><span class="st">&quot;#F8F1E3&quot;</span>/&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;selection&quot;</span> <span class="ot">background=</span><span class="st">&quot;#E8D9BC&quot;</span>/&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;cursor&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#7A5C3E&quot;</span>/&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;typecase:syntax&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#B3A592&quot;</span>/&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;typecase:heading&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#3B2F25&quot;</span>/&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;typecase:link&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#9C5B2E&quot;</span>/&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;typecase:code&quot;</span> <span class="ot">background=</span><span class="st">&quot;#EFE5D2&quot;</span>/&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">name=</span><span class="st">&quot;typecase:code-block&quot;</span> <span class="ot">foreground=</span><span class="st">&quot;#E0D3BC&quot;</span> <span class="ot">background=</span><span class="st">&quot;#F2E9D8&quot;</span>/&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">style-scheme</span>&gt;</span></code></pre></div>
+<p>The root element needs an <code>id</code> (letters, digits, and
+dashes; it must not start with <code>typecase-</code>, which is reserved
+for the built-in themes) and a <code>name</code>, which appears on the
+tile.</p>
+<h3 id="the-styles-typecase-uses">The styles Typecase uses</h3>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Attribute</th>
+<th>What it colors</th>
+<th>If missing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td><code>foreground</code>, <code>background</code></td>
+<td>Text color and page background</td>
+<td>Taken from the parent scheme</td>
+</tr>
+<tr>
+<td><code>selection</code></td>
+<td><code>background</code></td>
+<td>Selected text</td>
+<td>Taken from the parent scheme</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td><code>foreground</code></td>
+<td>Text cursor</td>
+<td>Text color</td>
+</tr>
+<tr>
+<td><code>typecase:syntax</code></td>
+<td><code>foreground</code></td>
+<td>Markdown marks such as <code>#</code>, <code>**</code>,
+<code>_</code>, shown faintly</td>
+<td>Text color at 40 % opacity</td>
+</tr>
+<tr>
+<td><code>typecase:heading</code></td>
+<td><code>foreground</code></td>
+<td>Headings</td>
+<td>Text color</td>
+</tr>
+<tr>
+<td><code>typecase:link</code></td>
+<td><code>foreground</code></td>
+<td>Links; also the accent color of the window (selection in the
+library, switches, progress rings)</td>
+<td><code>def:net-address</code>, then blue</td>
+</tr>
+<tr>
+<td><code>typecase:list-marker</code></td>
+<td><code>foreground</code></td>
+<td>List bullets and numbers</td>
+<td>Link color</td>
+</tr>
+<tr>
+<td><code>typecase:code</code></td>
+<td><code>background</code></td>
+<td>Background of <code>inline code</code></td>
+<td>Text color at low opacity</td>
+</tr>
+<tr>
+<td><code>typecase:code-block</code></td>
+<td><code>foreground</code>, <code>background</code></td>
+<td>Code blocks: frame and fill</td>
+<td>Text color at low opacity</td>
+</tr>
+</tbody>
+</table>
+<p>Colors are written as <code>#RRGGBB</code>, or <code>#RRGGBBAA</code>
+with transparency (for example <code>#00000059</code> is black at 35
+%).</p>
+<p>Syntax highlighting inside code blocks (<code>```python</code>) uses
+the scheme’s regular GtkSourceView styles (<code>def:keyword</code>,
+<code>def:string</code>, <code>def:comment</code>, …). The easiest way
+to get good code colors is <code>parent-scheme</code>: the theme then
+takes everything it does not define itself from that scheme.
+GtkSourceView always includes <code>Adwaita</code>,
+<code>Adwaita-dark</code>, <code>solarized-light</code>,
+<code>solarized-dark</code>, <code>classic</code>,
+<code>classic-dark</code>, <code>kate</code>, <code>kate-dark</code>,
+<code>cobalt</code>, <code>cobalt-light</code>, <code>oblivion</code>,
+and <code>tango</code>.</p>
+<h3 id="light-and-dark-variants">Light and dark variants</h3>
+<p>A theme with two variants consists of two files. Typecase pairs them
+in one of two ways:</p>
+<ul>
+<li><strong>Metadata</strong>, as in the example above: the light file
+names its partner with <code>dark-variant</code>, the dark file names
+its partner with <code>light-variant</code> and has
+<code>&lt;property name="variant"&gt;dark&lt;/property&gt;</code>.</li>
+<li><strong>File IDs</strong>: the dark variant’s ID is the light one’s
+plus <code>-dark</code>, for example <code>my-paper</code> and
+<code>my-paper-dark</code>.</li>
+</ul>
+<p>Import both files to get both variants. A theme with only one file is
+used for light and dark alike. Without the <code>variant</code>
+property, Typecase decides by the brightness of the page background.</p>
+<h3 id="the-window-colors">The window colors</h3>
+<p>For every theme except “Standard”, Typecase derives the colors of the
+whole window from the theme: header bars take the page background, the
+sidebar and properties pane a slightly darker shade (lighter in dark
+themes), menus and dialogs a shade in between, and the accent color
+comes from <code>typecase:link</code>. You do not need to define
+anything extra for this.</p>
+<h2 id="using-themes-from-elsewhere">Using themes from elsewhere</h2>
+<p>Many color schemes exist in this format, often published as themes
+for gedit, GNOME Text Editor, or GtkSourceView (for example Catppuccin,
+Dracula, Nord, or Gruvbox). Such schemes do not know the
+<code>typecase:</code> styles, so Typecase derives the Markdown colors
+from their text and link colors. To fine-tune them, add
+<code>typecase:</code> styles to a copy of the file and import it
+again.</p>
+<h2 id="checking-and-sharing">Checking and sharing</h2>
+<p>On import, Typecase checks that the file is a style scheme that
+GtkSourceView can load, that it has an ID and a name, and that it is not
+larger than 512 KB. A broken file is never imported. Importing a file
+with the same ID as an already imported theme replaces it. Removing a
+theme moves its files to the trash.</p>
+<p>You can share the <code>.xml</code> files as they are. Imported
+themes are available on the computer where you imported them.</p>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Sascha Wübbena · kleinod.studio</span>
+    <span><a href="/legal-notice/">Legal notice</a> · <a href="/privacy/">Privacy</a></span>
+  </div>
+</footer>
+</body>
+</html>
