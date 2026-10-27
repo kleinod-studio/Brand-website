@@ -20,8 +20,8 @@
   <rect width="1500" height="500" fill="url(#bg)"/>
   <rect width="1500" height="500" fill="url(#glow2)"/>
   <rect width="1500" height="500" fill="url(#glow)"/>
-  <text x="110" y="232" font-family="Adwaita Sans" font-size="58" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">Small, careful software</text>
-  <text x="110" y="304" font-family="Adwaita Sans" font-size="58" font-weight="700" fill="#BDB3F7" letter-spacing="-0.5">for Linux.</text>
+  <text x="110" y="140" font-family="Adwaita Sans" font-size="58" font-weight="700" fill="#FFFFFF" letter-spacing="-0.5">Small, careful software</text>
+  <text x="110" y="210" font-family="Adwaita Sans" font-size="58" font-weight="700" fill="#BDB3F7" letter-spacing="-0.5">for Linux.</text>
   <g filter="url(#shadow)"><svg x="1160" y="120" width="260" height="260" viewBox="0 0 128 128">
 
   
