@@ -70,6 +70,7 @@ LAYOUT = """<!doctype html>
     <nav aria-label="Main">
       <a href="/typecase/">Typecase</a>
       <a href="https://github.com/kleinod-studio">GitHub</a>
+      <a rel="me" href="https://sueden.social/@kleinod_studio">Mastodon</a>
     </nav>
   </div>
 </header>
