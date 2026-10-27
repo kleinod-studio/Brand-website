@@ -36,7 +36,7 @@
   <a class="button" href="#install">Get Typecase</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Typecase">Source code</a>
 </div>
-<p class="muted">Version 0.10.0 · <a href="https://github.com/kleinod-studio/Typecase/releases/tag/v0.10.0">Release notes</a></p>
+<p class="muted">Version 1.0.0 · <a href="https://github.com/kleinod-studio/Typecase/releases/tag/v1.0.0">Release notes</a></p>
 
 <img class="shot shot-light" src="/assets/typecase/screenshot-light.png" alt="Typecase with the library on the left, a sheet in the editor and the formatting bar" width="1600" height="1000">
 <img class="shot shot-dark" src="/assets/typecase/screenshot-dark.png" alt="Typecase in dark style" width="1600" height="1000">
@@ -90,18 +90,18 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 <p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Typecase needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
 <h3>Install Typecase</h3>
 <div class="buttons">
-  <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v0.10.0/Typecase-0.10.0-x86_64.flatpak">Download for x86_64</a>
-  <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v0.10.0/Typecase-0.10.0-aarch64.flatpak">Download for ARM (aarch64)</a>
+  <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.0.0/Typecase-1.0.0-x86_64.flatpak">Download for x86_64</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.0.0/Typecase-1.0.0-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
 <p>Most PCs need the x86_64 version. Then open a terminal in your downloads folder:</p>
-<pre><code>flatpak install --user Typecase-0.10.0-x86_64.flatpak</code></pre>
+<pre><code>flatpak install --user Typecase-1.0.0-x86_64.flatpak</code></pre>
 <p>The GNOME runtime is fetched from Flathub automatically, and Typecase appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library and settings stay.</p>
 <h3>Spell checking dictionaries</h3>
 <p>The dictionaries come from the GNOME runtime's language packs, which Flatpak installs only for the languages it is set up for. If Typecase says that a dictionary is missing, add the language (here German and English) and update:</p>
 <pre><code>flatpak config --user --set languages "de;en"
 flatpak update --user</code></pre>
 <h3>Build from source</h3>
-<pre><code>git clone --branch v0.10.0 https://github.com/kleinod-studio/Typecase.git
+<pre><code>git clone --branch v1.0.0 https://github.com/kleinod-studio/Typecase.git
 cd Typecase
 flatpak-builder --user --install --force-clean build-dir studio.kleinod.Typecase.yml</code></pre>
 <p>You need <code>flatpak-builder</code> and the GNOME runtime (<code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51</code>).</p>
