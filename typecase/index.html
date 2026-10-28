@@ -83,7 +83,7 @@
 </div>
 
 <h2 id="install">Install</h2>
-<p>Typecase will come to Flathub with version 1.0; until then, install the Flatpak bundle.</p>
+<p>A release on Flathub is planned for later; until then, install the Flatpak bundle.</p>
 <h3>First time with Flatpak?</h3>
 <p>Flatpak is a format for apps that runs on almost every Linux distribution. Fedora and Linux Mint come with it already set up, so you can skip this step. On Ubuntu, open a terminal and set it up once:</p>
 <pre><code>sudo apt install flatpak
@@ -94,8 +94,11 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
   <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.0.0/Typecase-1.0.0-x86_64.flatpak">Download for x86_64</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.0.0/Typecase-1.0.0-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
-<p>Most PCs need the x86_64 version. Then open a terminal in your downloads folder:</p>
+<p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
+<p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
 <pre><code>flatpak install --user Typecase-1.0.0-x86_64.flatpak</code></pre>
+<p>For ARM (aarch64):</p>
+<pre><code>flatpak install --user Typecase-1.0.0-aarch64.flatpak</code></pre>
 <p>The GNOME runtime is fetched from Flathub automatically, and Typecase appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library and settings stay.</p>
 <h3>Spell checking dictionaries</h3>
 <p>The dictionaries come from the GNOME runtime's language packs, which Flatpak installs only for the languages it is set up for. If Typecase says that a dictionary is missing, add the language (here German and English) and update:</p>
