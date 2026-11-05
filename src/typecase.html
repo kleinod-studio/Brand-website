@@ -12,20 +12,27 @@ description: Typecase is a calm, native Markdown writing app for Linux. Plain fi
   <a class="button" href="#install">Get Typecase</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Typecase">Source code</a>
 </div>
-<p class="muted">Version 1.1.2 · <a href="https://github.com/kleinod-studio/Typecase/releases/tag/v1.1.2">Release notes</a></p>
+<p class="muted">Version 1.2.0 · <a href="https://github.com/kleinod-studio/Typecase/releases/tag/v1.2.0">Release notes</a></p>
 
-<img class="shot shot-light" src="/assets/typecase/screenshot-light.png" alt="Typecase with the library on the left, a sheet in the editor and the formatting bar" width="1600" height="1000">
-<img class="shot shot-dark" src="/assets/typecase/screenshot-dark.png" alt="Typecase in dark style" width="1600" height="1000">
+<img class="shot shot-light" src="/assets/typecase/screenshot-light.png" alt="Typecase with the library on the left and a sheet in the editor: a picture of a lighthouse in the text, with a yellow pill for the image, a green pill for a footnote and a blue pill for a link" width="1600" height="1000">
+<img class="shot shot-dark" src="/assets/typecase/screenshot-dark.png" alt="The same sheet with its image and pills in dark style" width="1600" height="1000">
 
 <h2>Writing, without distractions</h2>
 <div class="cards">
   <div class="card"><h3>A library of plain files</h3><p>Any folder becomes your library; subfolders are groups. No database, no proprietary format. Sync it with Nextcloud or Syncthing if you like.</p></div>
   <div class="card"><h3>Markdown, styled as you type</h3><p>Headings, emphasis, lists and code look the way they will. A floating formatting bar helps if you'd rather not learn the syntax.</p></div>
+  <div class="card"><h3>Find your way</h3><p>The outline lists the headings of a sheet, or of a whole group with its subgroups. Choose one to jump there.</p></div>
   <div class="card"><h3>Focus mode</h3><p>Full screen with only your text. Typewriter scrolling keeps the current line centered, and the rest of the text fades back.</p></div>
   <div class="card"><h3>Goals and keywords</h3><p>Set a word goal per sheet and watch the progress rings fill. Tag sheets with keywords and filter your library by them.</p></div>
   <div class="card"><h3>Your text is safe</h3><p>Every change is saved automatically and atomically. If another program changes a file, Typecase never overwrites what you typed.</p></div>
   <div class="card"><h3>Private</h3><p>No account, no telemetry, no network access. The Flatpak doesn't even have network permission.</p></div>
 </div>
+
+<h2>Images, links and footnotes</h2>
+<p>Drop an image into your text, paste a screenshot, or use the button in the formatting bar. The image appears right in the editor, and the file stays with its sheet as an attachment. A double-click sets its size, alignment, caption and alternative text, and every export follows.</p>
+<p>Markdown for images, links and footnotes can get long, so Typecase folds it into a small pill: yellow for images, blue for links, green for footnotes. Move the caret there, and the Markdown is back. Links open with Ctrl+click, and footnotes are written right where they belong. It all stays plain text.</p>
+<img class="shot shot-light" src="/assets/typecase/screenshot-image-light.png" alt="A dialog over the text with the settings of an image: size, alignment, caption and alternative text" width="1600" height="1000" loading="lazy">
+<img class="shot shot-dark" src="/assets/typecase/screenshot-image-dark.png" alt="The image dialog in dark style" width="1600" height="1000" loading="lazy">
 
 <h2>Plot with cards</h2>
 <p>Switch a group from <em>Text</em> to <em>Cards</em>, and every sheet becomes a card with its status, keywords, word count and notes. Jot down ideas right on the cards, and drag them, or press Alt and an arrow key, to try out a new order for your chapters. The sheets follow, and the notes stay in each file's front matter.</p>
@@ -33,11 +40,18 @@ description: Typecase is a calm, native Markdown writing app for Linux. Plain fi
 <img class="shot shot-dark" src="/assets/typecase/screenshot-cards-dark.png" alt="The card view in dark style" width="1600" height="1000" loading="lazy">
 
 <h2>Export with templates</h2>
-<p>Typecase exports to PDF, Word (DOCX) and HTML through Pandoc. How the result looks is decided by a template: a single <code>.typecase-template</code> file you import under <em>Preferences → Templates</em>. One template covers all three formats.</p>
+<p>Typecase exports to PDF, Word (DOCX) and HTML through Pandoc, a single sheet or a whole group. Add a table of contents and a cover page if you like. Footnotes land at the bottom of their page, pages get numbers, and the subgroups of a group become parts, with their own heading or title page.</p>
+<p>How the result looks is decided by a template, and one template covers all three formats.</p>
+<img class="shot shot-light" src="/assets/typecase/screenshot-assistant-light.png" alt="The template assistant with a name, a starting point, and settings for paper, margins, page numbers and fonts" width="1600" height="1000" loading="lazy">
+<img class="shot shot-dark" src="/assets/typecase/screenshot-assistant-dark.png" alt="The template assistant in dark style" width="1600" height="1000" loading="lazy">
 <div class="cards">
   <div class="card">
+    <h3>Use the assistant</h3>
+    <p>Under <em>Preferences → Templates → New…</em>, choose a starting point such as a manuscript, a thesis or a novel, then adjust paper, margins, fonts and spacing. No files, no code, and you can change it later.</p>
+  </div>
+  <div class="card">
     <h3>Build your own templates</h3>
-    <p>The guide explains the format: description, HTML template, CSS and Word styles.</p>
+    <p>For special layouts, a template is a single <code>.typecase-template</code> file you import in the preferences. The guide explains the format: description, HTML template, CSS and Word styles.</p>
     <p><a href="/typecase/templates/">Read the template guide</a></p>
   </div>
   <div class="card">
@@ -71,24 +85,24 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 <p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Typecase needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
 <h3>Install Typecase</h3>
 <div class="buttons">
-  <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.1.2/Typecase-1.1.2-x86_64.flatpak">Download for x86_64</a>
-  <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.1.2/Typecase-1.1.2-aarch64.flatpak">Download for ARM (aarch64)</a>
+  <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.2.0/Typecase-1.2.0-x86_64.flatpak">Download for x86_64</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.2.0/Typecase-1.2.0-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
 <p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
 <p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
-<pre><code>flatpak install --user Typecase-1.1.2-x86_64.flatpak</code></pre>
+<pre><code>flatpak install --user Typecase-1.2.0-x86_64.flatpak</code></pre>
 <p>For ARM (aarch64):</p>
-<pre><code>flatpak install --user Typecase-1.1.2-aarch64.flatpak</code></pre>
+<pre><code>flatpak install --user Typecase-1.2.0-aarch64.flatpak</code></pre>
 <p>The GNOME runtime is fetched from Flathub automatically, and Typecase appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library and settings stay.</p>
 <h3>Spell checking dictionaries</h3>
 <p>The dictionaries come from the GNOME runtime's language packs, which Flatpak installs only for the languages it is set up for. If Typecase says that a dictionary is missing, add the language (here German and English) and update:</p>
 <pre><code>flatpak config --user --set languages "de;en"
 flatpak update --user</code></pre>
 <h3>Build from source</h3>
-<pre><code>git clone --branch v1.1.2 https://github.com/kleinod-studio/Typecase.git
+<pre><code>git clone --branch v1.2.0 https://github.com/kleinod-studio/Typecase.git
 cd Typecase
 flatpak-builder --user --install --force-clean build-dir studio.kleinod.Typecase.yml</code></pre>
 <p>You need <code>flatpak-builder</code> and the GNOME runtime (<code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51</code>).</p>
 
 <h2>Get involved</h2>
-<p>Typecase is free software under the GPL-3.0-or-later. Found a bug or have an idea? <a href="https://github.com/kleinod-studio/Typecase/issues">Open an issue</a>. See the <a href="https://github.com/kleinod-studio/Typecase/blob/main/ROADMAP.md">roadmap</a> for what's done and what comes next.</p>
+<p>Typecase is free software under the GPL-3.0-or-later. Found a bug or have an idea? <a href="https://github.com/kleinod-studio/Typecase/issues">Open an issue</a>. Would you like to see Typecase in your language? <a href="https://github.com/kleinod-studio/Typecase/blob/main/CONTRIBUTING.md">Help translate it</a>, no programming needed. See the <a href="https://github.com/kleinod-studio/Typecase/blob/main/ROADMAP.md">roadmap</a> for what's done and what comes next.</p>

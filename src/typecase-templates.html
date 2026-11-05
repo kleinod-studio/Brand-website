@@ -13,10 +13,14 @@ it in Typecase under <strong>Preferences → Templates → Import…</strong>.
 When exporting (Ctrl+E), you then pick it under “Template” in the export
 dialog, next to “Format”.</p>
 <p>This guide describes how a template is structured and how to build
-your own. The easiest way is the <strong>Claude skill
-“typecase-template”</strong>: you describe to Claude what your document
-should look like and get a finished template file. The skill can be
-downloaded from <a
+your own. The easiest way is the <strong>template assistant</strong>:
+under <strong>Preferences → Templates → New…</strong>, choose a starting
+point, adjust paper, fonts and spacing, and the template is ready, for
+PDF, Word and HTML. You can change it later with the edit button. For
+special wishes, such as a letterhead or a publisher's guidelines, there
+is the <strong>Claude skill “typecase-template”</strong>: you describe
+to Claude what your document should look like and get a finished
+template file. The skill can be downloaded from <a
 href="https://kleinod.studio/typecase">https://kleinod.studio/typecase</a>.
 If you prefer to do it by hand, you will find everything you need
 here.</p>
@@ -209,10 +213,21 @@ page, <code>.title-block { break-after: page; }</code> for a separate
 title page, <code>break-after: avoid</code> for headings,
 <code>orphans</code>/<code>widows</code> to prevent single stranded
 lines.</li>
-<li><strong>Page numbers and headers</strong> are currently not
-available in PDF (Typecase prints with WebKit, which does not fill these
-page margin areas). In Word documents, you can add them via
-<code>reference.docx</code>.</li>
+<li><strong>Page numbers and headers</strong> in PDF:
+<code>@page { @bottom-center { content: counter(page); } }</code> (also
+<code>@top-center</code>, <code>@bottom-right</code> and so on). In Word
+documents, you can add them via <code>reference.docx</code>.</li>
+<li><strong>Cover, table of contents and parts</strong> are export
+options that work with every template. To restyle them:
+<code>.cover</code> (with <code>.title</code>, <code>.subtitle</code>,
+<code>.author</code>, <code>.date</code>), <code>.toc</code> (with
+<code>.toc-title</code>), and <code>.part</code> for the name of a
+subgroup, plus <code>.new-page</code> or <code>.title-page</code>
+depending on the export setting. In a group with parts, chapters are
+<code>h2</code>.</li>
+<li><strong>Footnotes</strong> are at the bottom of their page in PDF.
+<code>.footnote</code>, <code>::footnote-call</code> and
+<code>::footnote-marker</code> restyle them.</li>
 <li><strong>Fonts</strong>: rely only on widely available fonts (e.g.
 “Liberation Serif”, “DejaVu Serif”, “Noto Sans”) or embed your own: put
 the font file in the archive and include it with
@@ -221,6 +236,16 @@ Typecase embeds files referenced by <code>url(…)</code> in HTML and PDF.
 Mind the font’s license.</li>
 <li><strong>Images</strong> (such as a logo) work the same way:
 <code>background-image: url("logo.svg")</code>.</li>
+<li><strong>Images in the text</strong> lie in
+<code>&lt;figure&gt;</code> with a <code>&lt;figcaption&gt;</code>, or
+in a paragraph if they have no caption. An alignment chosen in the image
+dialog adds the class <code>image-left</code>, <code>image-center</code>
+or <code>image-right</code> around them. Without one, your CSS decides:
+<code>figure { text-align: center; }</code> centers all images. In
+<code>reference.docx</code> the styles "Captioned Figure" and "Image
+Caption" apply; aligned images use "Typecase Image center" and "Typecase
+Caption center" (likewise <code>left</code> and <code>right</code>),
+which Typecase adds on its own unless your template defines them.</li>
 <li>References to files outside the template and internet addresses are
 left unchanged; Typecase does not download anything from the
 network.</li>
