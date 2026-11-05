@@ -59,6 +59,7 @@ img { max-width: 100%; height: auto; }
 .site-header nav { display: flex; gap: 20px; font-size: 15px; }
 .site-header nav a { color: var(--ink); text-decoration: none; }
 .site-header nav a:hover { color: var(--violet); }
+.site-header nav .soon { color: var(--muted); cursor: default; } /* an app on its way, not linked yet */
 
 .site-footer { border-top: 1px solid var(--line); margin-top: 96px; padding: 32px 0 48px; font-size: 14px; color: var(--muted); }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }

@@ -69,6 +69,7 @@ LAYOUT = """<!doctype html>
     </a>
     <nav aria-label="Main">
       <a href="/typecase/">Typecase</a>
+      <span class="soon" title="Coming soon">Endpaper</span>
       <a href="https://github.com/kleinod-studio">GitHub</a>
       <a rel="me" href="https://sueden.social/@kleinod_studio">Mastodon</a>
     </nav>
