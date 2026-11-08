@@ -38,7 +38,7 @@
   <a class="button" href="#install">Get Endpaper</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper">Source code</a>
 </div>
-<p class="muted">Version 0.4.1, an early version for everyday testing · <a href="https://github.com/kleinod-studio/Endpaper/releases/tag/v0.4.1">Release notes</a></p>
+<p class="muted">Version 0.5.0, an early version for everyday testing · <a href="https://github.com/kleinod-studio/Endpaper/releases/tag/v0.5.0">Release notes</a></p>
 
 <img class="shot shot-light" src="/assets/endpaper/screenshot-light.png" alt="The Endpaper shelf with categories of books, their covers and small rings that show the reading progress" width="1280" height="800">
 <img class="shot shot-dark" src="/assets/endpaper/screenshot-dark.png" alt="The same shelf in dark style" width="1280" height="800">
@@ -47,7 +47,7 @@
 <div class="cards">
   <div class="card"><h3>Folders become categories</h3><p>Any folder becomes your library, and its subfolders become categories. No database, no import. Sync it with Nextcloud or Syncthing if you like; books you add from outside appear on the shelf.</p></div>
   <div class="card"><h3>Order from the shelf</h3><p>Create and rename categories, move books by dragging or with Alt and the arrow keys. Pin the books you need, and the categories you use most to the top. Deleting always goes through the system trash.</p></div>
-  <div class="card"><h3>Reading progress</h3><p>A small ring on each cover shows how far you have read. Near the end, Endpaper asks whether you have finished the book, and finished books gather at the end of the shelf.</p></div>
+  <div class="card"><h3>Reading progress</h3><p>A small ring on each cover shows how far you have read; in the open book, the corner shows percent or page numbers, also those of the print edition. Near the end, Endpaper asks whether you have finished the book, and finished books gather at the end of the shelf.</p></div>
   <div class="card"><h3>Your way of reading</h3><p>Pages or continuous scrolling, two pages side by side on a wide window. Font, size, spacing and width, and light, sepia or dark colors.</p></div>
   <div class="card"><h3>Footnotes in place</h3><p>Footnotes and references show in a small popup at their mark, without leaving the page. A click on a picture shows it large.</p></div>
   <div class="card"><h3>Focus mode</h3><p>F11 shows only the text, full screen, with more room around it. Esc brings the window back.</p></div>
@@ -84,17 +84,17 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 <p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Endpaper needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
 <h3>Install Endpaper</h3>
 <div class="buttons">
-  <a class="button" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.4.1/Endpaper-0.4.1-x86_64.flatpak">Download for x86_64</a>
-  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.4.1/Endpaper-0.4.1-aarch64.flatpak">Download for ARM (aarch64)</a>
+  <a class="button" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.0/Endpaper-0.5.0-x86_64.flatpak">Download for x86_64</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.0/Endpaper-0.5.0-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
 <p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
 <p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
-<pre><code>flatpak install --user Endpaper-0.4.1-x86_64.flatpak</code></pre>
+<pre><code>flatpak install --user Endpaper-0.5.0-x86_64.flatpak</code></pre>
 <p>For ARM (aarch64):</p>
-<pre><code>flatpak install --user Endpaper-0.4.1-aarch64.flatpak</code></pre>
+<pre><code>flatpak install --user Endpaper-0.5.0-aarch64.flatpak</code></pre>
 <p>The GNOME runtime is fetched from Flathub automatically, and Endpaper appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library, notes and settings stay.</p>
 <h3>Build from source</h3>
-<pre><code>git clone --branch v0.4.1 https://github.com/kleinod-studio/Endpaper.git
+<pre><code>git clone --branch v0.5.0 https://github.com/kleinod-studio/Endpaper.git
 cd Endpaper
 flatpak-builder --user --install --force-clean build-dir studio.kleinod.Endpaper.yml</code></pre>
 <p>You need <code>flatpak-builder</code> and the GNOME runtime (<code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51</code>).</p>
