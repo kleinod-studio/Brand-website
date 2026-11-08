@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endpaper · A friendly bookshelf and a quiet place to read, for Linux</title>
+<meta name="description" content="Endpaper is a native EPUB reader for Linux with a bookshelf of categories and effortless marks and notes. Plain files, no account, no network.">
+<meta property="og:title" content="Endpaper · A friendly bookshelf and a quiet place to read, for Linux">
+<meta property="og:description" content="Endpaper is a native EPUB reader for Linux with a bookshelf of categories and effortless marks and notes. Plain files, no account, no network.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="kleinod.studio home">
+      <img class="logo-light" src="/assets/kleinod-studio-logo-horizontal.svg" alt="kleinod.studio" width="230" height="34">
+      <img class="logo-dark" src="/assets/kleinod-studio-logo-horizontal-dark.svg" alt="kleinod.studio" width="230" height="34">
+    </a>
+    <nav aria-label="Main">
+      <a href="/typecase/">Typecase</a>
+      <a href="/endpaper/">Endpaper</a>
+      <a href="https://github.com/kleinod-studio">GitHub</a>
+      <a rel="me" href="https://sueden.social/@kleinod_studio">Mastodon</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<section class="hero-app">
+  <img src="/assets/endpaper/icon.svg" alt="" width="128" height="128">
+  <div>
+    <h1>Endpaper</h1>
+    <p class="lead">A friendly bookshelf and a quiet place to read, for Linux. Your books stay plain <code>.epub</code> files in a folder of your choice, and Endpaper never changes them.</p>
+  </div>
+</section>
+<div class="buttons">
+  <a class="button" href="#install">Get Endpaper</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper">Source code</a>
+</div>
+<p class="muted">Version 0.4.1, an early version for everyday testing · <a href="https://github.com/kleinod-studio/Endpaper/releases/tag/v0.4.1">Release notes</a></p>
+
+<img class="shot shot-light" src="/assets/endpaper/screenshot-light.png" alt="The Endpaper shelf with categories of books, their covers and small rings that show the reading progress" width="1280" height="800">
+<img class="shot shot-dark" src="/assets/endpaper/screenshot-dark.png" alt="The same shelf in dark style" width="1280" height="800">
+
+<h2>A shelf of plain files</h2>
+<div class="cards">
+  <div class="card"><h3>Folders become categories</h3><p>Any folder becomes your library, and its subfolders become categories. No database, no import. Sync it with Nextcloud or Syncthing if you like; books you add from outside appear on the shelf.</p></div>
+  <div class="card"><h3>Order from the shelf</h3><p>Create and rename categories, move books by dragging or with Alt and the arrow keys. Pin the books you need, and the categories you use most to the top. Deleting always goes through the system trash.</p></div>
+  <div class="card"><h3>Reading progress</h3><p>A small ring on each cover shows how far you have read. Near the end, Endpaper asks whether you have finished the book, and finished books gather at the end of the shelf.</p></div>
+  <div class="card"><h3>Your way of reading</h3><p>Pages or continuous scrolling, two pages side by side on a wide window. Font, size, spacing and width, and light, sepia or dark colors.</p></div>
+  <div class="card"><h3>Footnotes in place</h3><p>Footnotes and references show in a small popup at their mark, without leaving the page. A click on a picture shows it large.</p></div>
+  <div class="card"><h3>Focus mode</h3><p>F11 shows only the text, full screen, with more room around it. Esc brings the window back.</p></div>
+</div>
+
+<h2>Marks and notes, without dragging</h2>
+<p>Choose a color in the bar below the text, click the first word and then the last, across pages if you like. A double-click marks a single word, and it all works with the keyboard alone too. Marks that overlap simply join.</p>
+<p>Every mark can have notes in Markdown, as long as you like. They are saved while you type, into a readable <code>.notes.md</code> file beside the book that moves and syncs with it, and stays readable without Endpaper. The text fields and tick boxes of study editions work as well, and your answers go into the same file.</p>
+<img class="shot shot-light" src="/assets/endpaper/screenshot-notes-light.png" alt="An open book with colored marks in the text and the panel of notes beside it" width="1280" height="800" loading="lazy">
+<img class="shot shot-dark" src="/assets/endpaper/screenshot-notes-dark.png" alt="The marks and notes in dark style" width="1280" height="800" loading="lazy">
+
+<h2>Find what you read</h2>
+<p>Ctrl+F lists every place in the open book by chapter, with a short excerpt that shows your marks, and your notes that match stand among them.</p>
+<img class="shot shot-light" src="/assets/endpaper/screenshot-search-light.png" alt="The search in an open book, with the places listed by chapter" width="1280" height="800" loading="lazy">
+<img class="shot shot-dark" src="/assets/endpaper/screenshot-search-dark.png" alt="The search in the book in dark style" width="1280" height="800" loading="lazy">
+<p>The search on the shelf goes further: it finds titles and authors, and also the words in the text of every book and in your notes. Other forms of a word count too, in German and English, and a typing error finds the closest word in your books. The text is read once in the background, into a cache that can always be thrown away.</p>
+<img class="shot shot-light" src="/assets/endpaper/screenshot-library-search-light.png" alt="The search on the shelf, with matching books and their first passages" width="1280" height="800" loading="lazy">
+<img class="shot shot-dark" src="/assets/endpaper/screenshot-library-search-dark.png" alt="The search in the library in dark style" width="1280" height="800" loading="lazy">
+
+<h2>Quiet and private</h2>
+<div class="cards">
+  <div class="card"><h3>No network at all</h3><p>No account, no telemetry. The Flatpak doesn't even have network permission.</p></div>
+  <div class="card"><h3>Books can't run anything</h3><p>Books are treated as untrusted content: their scripts don't run, and they can't load anything from outside. A web link opens in your browser only after asking you.</p></div>
+  <div class="card"><h3>Your notes are safe</h3><p>Notes are saved atomically. If another program changes a notes file, Endpaper keeps both versions instead of overwriting one.</p></div>
+</div>
+<p>Endpaper reads EPUB books without DRM.</p>
+
+<h2 id="install">Install</h2>
+<p>A release on Flathub is planned for later; until then, install the Flatpak bundle.</p>
+<h3>First time with Flatpak?</h3>
+<p>Flatpak is a format for apps that runs on almost every Linux distribution. Fedora and Linux Mint come with it already set up, so you can skip this step. On Ubuntu, open a terminal and set it up once:</p>
+<pre><code>sudo apt install flatpak
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</code></pre>
+<p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Endpaper needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
+<h3>Install Endpaper</h3>
+<div class="buttons">
+  <a class="button" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.4.1/Endpaper-0.4.1-x86_64.flatpak">Download for x86_64</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.4.1/Endpaper-0.4.1-aarch64.flatpak">Download for ARM (aarch64)</a>
+</div>
+<p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
+<p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
+<pre><code>flatpak install --user Endpaper-0.4.1-x86_64.flatpak</code></pre>
+<p>For ARM (aarch64):</p>
+<pre><code>flatpak install --user Endpaper-0.4.1-aarch64.flatpak</code></pre>
+<p>The GNOME runtime is fetched from Flathub automatically, and Endpaper appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library, notes and settings stay.</p>
+<h3>Build from source</h3>
+<pre><code>git clone --branch v0.4.1 https://github.com/kleinod-studio/Endpaper.git
+cd Endpaper
+flatpak-builder --user --install --force-clean build-dir studio.kleinod.Endpaper.yml</code></pre>
+<p>You need <code>flatpak-builder</code> and the GNOME runtime (<code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51</code>).</p>
+
+<h2>Get involved</h2>
+<p>Endpaper is free software under the GPL-3.0-or-later. Found a bug or have an idea? <a href="https://github.com/kleinod-studio/Endpaper/issues">Open an issue</a>. See the <a href="https://github.com/kleinod-studio/Endpaper/blob/main/ROADMAP.md">roadmap</a> for what's done and what comes next.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Sascha Wübbena · kleinod.studio</span>
+    <span><a href="/legal-notice/">Legal notice</a> · <a href="/privacy/">Privacy</a></span>
+  </div>
+</footer>
+</body>
+</html>
