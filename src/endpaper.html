@@ -12,7 +12,7 @@ description: Endpaper is a native EPUB reader for Linux with a bookshelf of cate
   <a class="button" href="#install">Get Endpaper</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper">Source code</a>
 </div>
-<p class="muted">Version 0.5.0, an early version for everyday testing · <a href="https://github.com/kleinod-studio/Endpaper/releases/tag/v0.5.0">Release notes</a></p>
+<p class="muted">Version 0.5.1, an early version for everyday testing · <a href="https://github.com/kleinod-studio/Endpaper/releases/tag/v0.5.1">Release notes</a></p>
 
 <img class="shot shot-light" src="/assets/endpaper/screenshot-light.png" alt="The Endpaper shelf with categories of books, their covers and small rings that show the reading progress" width="1280" height="800">
 <img class="shot shot-dark" src="/assets/endpaper/screenshot-dark.png" alt="The same shelf in dark style" width="1280" height="800">
@@ -45,7 +45,7 @@ description: Endpaper is a native EPUB reader for Linux with a bookshelf of cate
 <div class="cards">
   <div class="card"><h3>No network at all</h3><p>No account, no telemetry. The Flatpak doesn't even have network permission.</p></div>
   <div class="card"><h3>Books can't run anything</h3><p>Books are treated as untrusted content: their scripts don't run, and they can't load anything from outside. A web link opens in your browser only after asking you.</p></div>
-  <div class="card"><h3>Your notes are safe</h3><p>Notes are saved atomically. If another program changes a notes file, Endpaper keeps both versions instead of overwriting one.</p></div>
+  <div class="card"><h3>Your notes are safe</h3><p>Notes are saved atomically. If another program changes a notes file, Endpaper keeps both versions instead of overwriting one. When a book gets a new edition, your marks and notes find their place again by their text.</p></div>
 </div>
 <p>Endpaper reads EPUB books without DRM.</p>
 
@@ -58,17 +58,17 @@ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/fl
 <p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Endpaper needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
 <h3>Install Endpaper</h3>
 <div class="buttons">
-  <a class="button" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.0/Endpaper-0.5.0-x86_64.flatpak">Download for x86_64</a>
-  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.0/Endpaper-0.5.0-aarch64.flatpak">Download for ARM (aarch64)</a>
+  <a class="button" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.1/Endpaper-0.5.1-x86_64.flatpak">Download for x86_64</a>
+  <a class="button secondary" href="https://github.com/kleinod-studio/Endpaper/releases/download/v0.5.1/Endpaper-0.5.1-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
 <p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
 <p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
-<pre><code>flatpak install --user Endpaper-0.5.0-x86_64.flatpak</code></pre>
+<pre><code>flatpak install --user Endpaper-0.5.1-x86_64.flatpak</code></pre>
 <p>For ARM (aarch64):</p>
-<pre><code>flatpak install --user Endpaper-0.5.0-aarch64.flatpak</code></pre>
+<pre><code>flatpak install --user Endpaper-0.5.1-aarch64.flatpak</code></pre>
 <p>The GNOME runtime is fetched from Flathub automatically, and Endpaper appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library, notes and settings stay.</p>
 <h3>Build from source</h3>
-<pre><code>git clone --branch v0.5.0 https://github.com/kleinod-studio/Endpaper.git
+<pre><code>git clone --branch v0.5.1 https://github.com/kleinod-studio/Endpaper.git
 cd Endpaper
 flatpak-builder --user --install --force-clean build-dir studio.kleinod.Endpaper.yml</code></pre>
 <p>You need <code>flatpak-builder</code> and the GNOME runtime (<code>flatpak install flathub org.gnome.Platform//51 org.gnome.Sdk//51</code>).</p>
