@@ -222,11 +222,14 @@ def _video_entry(name: str, details: dict, folder: Path) -> str:
     title, summary = html.escape(details["title"]), html.escape(details["summary"])
     spoken = (folder / f"{name}.en.vtt").is_file()
     below = ""
-    if credit := details.get("credit"):
-        text = html.escape(credit["text"])
-        if credit.get("url"):
-            text = f'<a href="{html.escape(credit["url"])}">{text}</a>'
-        below += f'\n<p class="credit">{text}</p>'
+    if music := details.get("music"):
+        def link(text, url):
+            return f'<a href="{html.escape(url)}">{html.escape(text)}</a>' if url else html.escape(text)
+
+        below += (
+            f'\n<p class="credit">Music: “{html.escape(music["title"])}” by '
+            f'{link(music["artist"], music.get("artist_url"))} from {link(music["source"], music.get("source_url"))}</p>'
+        )
     if spoken:
         below += (
             f'\n<details class="narration"><summary>Read the narration</summary>\n'
