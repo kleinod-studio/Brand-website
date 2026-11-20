@@ -106,32 +106,37 @@ th { font-weight: 650; }
 
 .video { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--card); box-shadow: 0 12px 40px rgba(42, 37, 80, 0.12); margin: 24px 0 12px; }
 .narration { margin: 0 0 8px; }
-.credit { margin: 0 0 8px; font-size: 0.9em; }
-.topics { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 24px 0 0; color: var(--muted); }
 .narration summary { cursor: pointer; color: var(--violet); }
 
 /* Video page: the tour on the full width, tutorials two by two, played in a lightbox */
 .featured { margin: 8px 0 48px; }
-.featured .video { margin-top: 24px; }
-.featured-title { margin: 20px 0 4px; }
-.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; margin: 16px 0 40px; }
-.video-card h3 { margin: 14px 0 4px; }
-.video-card p { margin: 0 0 8px; }
+.featured-title { margin: 32px 0 4px; }
+.featured .video { margin: 16px 0 6px; }
+.credit { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+.credit a { color: inherit; }
+.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 28px; margin: 16px 0 40px; }
+.video-card h3 { margin: 0 0 4px; }
+.video-card > p { margin: 0 0 14px; }
+.video-card .narration { margin-top: 10px; }
 .video-thumb { position: relative; display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 28px rgba(42, 37, 80, 0.12); background: var(--card); }
 .video-thumb img { display: block; width: 100%; height: auto; transition: transform 0.25s ease; }
-.video-thumb .play { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; background: rgba(42, 37, 80, 0.78); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); transition: background 0.2s ease, transform 0.2s ease; }
-.video-thumb .play::after { content: ""; position: absolute; left: 27px; top: 21px; border-style: solid; border-width: 13px 0 13px 21px; border-color: transparent transparent transparent #fff; }
+.video-thumb .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(42, 37, 80, 0.78); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); transition: background 0.2s ease, transform 0.2s ease; }
+.video-thumb .play::after { content: ""; position: absolute; left: 25px; top: 20px; border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent #fff; }
 .video-thumb:hover img, .video-thumb:focus-visible img { transform: scale(1.03); }
 .video-thumb:hover .play, .video-thumb:focus-visible .play { background: var(--violet); transform: scale(1.08); }
 .video-thumb:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
-.lightbox { width: min(1200px, 94vw, (100vh - 140px) * 16 / 9); max-width: none; padding: 0; border: 0; border-radius: 14px; background: #000; overflow: visible; }
-.lightbox::backdrop { background: rgba(14, 12, 28, 0.82); }
-.lightbox video { display: block; width: 100%; height: auto; border-radius: 14px; }
-.lightbox-close { position: absolute; top: -48px; right: 0; width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
-.lightbox-close:hover, .lightbox-close:focus-visible { background: rgba(255, 255, 255, 0.3); }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-@media (max-width: 640px) { .video-grid { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: reduce) { .video-thumb img, .video-thumb .play { transition: none; } }
+
+.lightbox { width: min(880px, 82vw, (100vh - 160px) * 16 / 9); max-width: none; max-height: none; padding: 0; border: 0; border-radius: 20px; background: transparent; overflow: visible; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
+.lightbox[open] { animation: lightbox-in 0.22s ease-out; }
+.lightbox::backdrop { background: rgba(20, 18, 38, 0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.lightbox[open]::backdrop { animation: backdrop-in 0.22s ease-out; }
+.lightbox video { display: block; width: 100%; height: auto; border-radius: 20px; background: #000; }
+.lightbox-close { position: absolute; top: -14px; right: -14px; z-index: 1; width: 36px; height: 36px; border: 0; border-radius: 50%; background: #fff; color: #2A2550; font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
+.lightbox-close:hover, .lightbox-close:focus-visible { background: var(--lavender); color: #2A2550; }
+@keyframes lightbox-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 640px) { .video-grid { grid-template-columns: 1fr; } .lightbox { width: 92vw; } .lightbox-close { top: -44px; right: 0; } }
+@media (prefers-reduced-motion: reduce) { .video-thumb img, .video-thumb .play, .lightbox[open], .lightbox[open]::backdrop { transition: none; animation: none; } }
 
 .note { background: var(--lavender); border-radius: 10px; padding: 14px 18px; }
 .prose h2:first-child { margin-top: 32px; }

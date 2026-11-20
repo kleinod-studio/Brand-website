@@ -9,6 +9,7 @@ from the app repositories is converted with Pandoc.
 Run:  python3 build.py
 """
 
+import hashlib
 import html
 import json
 import re
@@ -61,7 +62,7 @@ LAYOUT = """<!doctype html>
 <meta property="og:description" content="{description}">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v={style_version}">
 </head>
 <body>
 <header class="site-header">
@@ -186,7 +187,6 @@ def videos() -> None:
         else:
             by_topic.setdefault(details["topic"], []).append(entry)
     topics = [topic for topic in TOPICS if topic in by_topic] + [topic for topic in by_topic if topic not in TOPICS]
-    contents = " · ".join(f'<a href="#{_anchor(topic)}">{html.escape(topic)}</a>' for topic in topics)
     sections = [
         f'<h2 id="{_anchor(topic)}">{html.escape(topic)}</h2>\n<div class="video-grid">\n'
         + "\n".join(by_topic[topic]) + "\n</div>"
@@ -199,12 +199,8 @@ def videos() -> None:
         "<h1>Videos</h1>\n"
         '<p class="lead">Short videos that show what Typecase can do, recorded in the app itself.</p>\n'
         + featured
-        + "\n<h2>Tutorials</h2>\n"
-        "<p>Each tutorial shows one thing, with subtitles in English and German; turn them on in the player. "
-        "The videos are served from this site, without any video platform, tracking or cookies.</p>\n"
-        f'<nav class="topics" aria-label="Topics">{contents}</nav>\n\n'
         + "\n\n".join(sections) + "\n"
-        + LIGHTBOX,
+        + LIGHTBOX.replace("{script_version}", _version(ROOT / "assets" / "videos.js")),
         encoding="utf-8",
     )
 
@@ -215,23 +211,24 @@ LIGHTBOX = """
   <button class="lightbox-close" type="button" aria-label="Close">×</button>
   <video controls playsinline width="1920" height="1080"></video>
 </dialog>
-<script src="/assets/videos.js" defer></script>
+<script src="/assets/videos.js?v={script_version}" defer></script>
 """
 
 
 def _video_entry(name: str, details: dict, folder: Path) -> str:
-    """The featured video as a player on the full width, a tutorial as a card that opens the lightbox."""
+    """Title and summary, then the video: the featured one as a player on the full width, a
+    tutorial as a picture that opens the lightbox. Under it only the music credit or the narration."""
     url = f"/assets/typecase/videos/{name}"
     title, summary = html.escape(details["title"]), html.escape(details["summary"])
     spoken = (folder / f"{name}.en.vtt").is_file()
-    extra = ""
+    below = ""
     if credit := details.get("credit"):
         text = html.escape(credit["text"])
         if credit.get("url"):
             text = f'<a href="{html.escape(credit["url"])}">{text}</a>'
-        extra += f'\n<p class="muted credit">{text}</p>'
+        below += f'\n<p class="credit">{text}</p>'
     if spoken:
-        extra += (
+        below += (
             f'\n<details class="narration"><summary>Read the narration</summary>\n'
             f'<p>{html.escape(_narration(folder / f"{name}.en.vtt"))}</p>\n</details>'
         )
@@ -242,20 +239,25 @@ def _video_entry(name: str, details: dict, folder: Path) -> str:
         ) if spoken else ""
         return (
             f'<section class="featured" id="{name}">\n'
+            f'<h2 class="featured-title">{title}</h2>\n<p>{summary}</p>\n'
             f'<video class="video" controls preload="none" poster="{url}.jpg" width="1920" height="1080">\n'
             f'  <source src="{url}.webm" type="video/webm">\n'
             f'  <source src="{url}.mp4" type="video/mp4">\n{tracks}'
-            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>\n'
-            f'<h2 class="featured-title">{title}</h2>\n<p>{summary}</p>{extra}\n</section>\n'
+            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>{below}\n</section>\n'
         )
     subtitles = f' data-subtitles="{url}"' if spoken else ""
     return (
         f'<article class="video-card" id="{name}">\n'
-        f'<a class="video-thumb" href="{url}.mp4" data-video="{url}"{subtitles} data-title="{title}">'
-        f'<img src="{url}.jpg" alt="" width="1280" height="720" loading="lazy">'
-        f'<span class="play" aria-hidden="true"></span><span class="visually-hidden">Play “{title}”</span></a>\n'
-        f'<h3>{title}</h3>\n<p>{summary}</p>{extra}\n</article>'
+        f'<h3>{title}</h3>\n<p>{summary}</p>\n'
+        f'<a class="video-thumb" href="{url}.mp4" data-video="{url}"{subtitles} data-title="{title}" aria-label="Play “{title}”">'
+        f'<img src="{url}.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span></a>'
+        f'{below}\n</article>'
     )
+
+
+def _version(path: Path) -> str:
+    """A short fingerprint of a file for its address, so browsers fetch it again when it changes."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:10]
 
 
 def main() -> None:
@@ -270,6 +272,7 @@ def main() -> None:
             title=html.escape(meta.get("title", "kleinod.studio")),
             description=html.escape(meta.get("description", "")),
             content=content.rstrip(),
+            style_version=_version(ROOT / "assets" / "style.css"),
         )
         out = ROOT / target
         out.parent.mkdir(parents=True, exist_ok=True)
