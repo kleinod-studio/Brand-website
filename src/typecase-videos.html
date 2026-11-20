@@ -4,19 +4,35 @@ description: Short videos that show what Typecase can do, with English and Germa
 <p class="muted" style="margin-top: 32px"><a href="/typecase/">Typecase</a> › Videos</p>
 <h1>Videos</h1>
 <p class="lead">Short videos that show what Typecase can do, recorded in the app itself.</p>
-<p>Each video has subtitles in English and German; turn them on in the player. The videos are served from this site, without any video platform, tracking or cookies.</p>
+<section class="featured" id="tour">
+<video class="video" controls preload="none" poster="/assets/typecase/videos/tour.jpg" width="1920" height="1080">
+  <source src="/assets/typecase/videos/tour.webm" type="video/webm">
+  <source src="/assets/typecase/videos/tour.mp4" type="video/mp4">
+  <p><a href="/assets/typecase/videos/tour.mp4">Download the video</a></p>
+</video>
+<h2 class="featured-title">A tour of Typecase</h2>
+<p>A short tour through Typecase, from the first sentence to the finished page.</p>
+<p class="muted credit"><a href="https://pixabay.com/music/">Music: “Cinematic” by AtlasAudio, from Pixabay</a></p>
+</section>
+
+<h2>Tutorials</h2>
+<p>Each tutorial shows one thing, with subtitles in English and German; turn them on in the player. The videos are served from this site, without any video platform, tracking or cookies.</p>
 <nav class="topics" aria-label="Topics"><a href="#organize-your-texts">Organize your texts</a></nav>
 
 <h2 id="organize-your-texts">Organize your texts</h2>
-<h3 id="icons-and-colors">Icons and colors</h3>
+<div class="video-grid">
+<article class="video-card" id="icons-and-colors">
+<a class="video-thumb" href="/assets/typecase/videos/icons-and-colors.mp4" data-video="/assets/typecase/videos/icons-and-colors" data-subtitles="/assets/typecase/videos/icons-and-colors" data-title="Icons and colors"><img src="/assets/typecase/videos/icons-and-colors.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span><span class="visually-hidden">Play “Icons and colors”</span></a>
+<h3>Icons and colors</h3>
 <p>Give groups and sheets an icon and a color, so they stand out in your library at a glance.</p>
-<video class="video" controls preload="none" poster="/assets/typecase/videos/icons-and-colors.jpg" width="1920" height="1080">
-  <source src="/assets/typecase/videos/icons-and-colors.webm" type="video/webm">
-  <source src="/assets/typecase/videos/icons-and-colors.mp4" type="video/mp4">
-  <track kind="subtitles" srclang="en" label="English" src="/assets/typecase/videos/icons-and-colors.en.vtt">
-  <track kind="subtitles" srclang="de" label="Deutsch" src="/assets/typecase/videos/icons-and-colors.de.vtt">
-  <p><a href="/assets/typecase/videos/icons-and-colors.mp4">Download the video</a></p>
-</video>
 <details class="narration"><summary>Read the narration</summary>
 <p>This is Typecase, a calm writing app for Linux. Your library is a folder of plain Markdown files, and at first, every group and sheet looks the same. To make a group stand out, right-click it and choose Icon and Color. Pick one of the nine accent colors from GNOME, then one of twenty-eight icons. Apply, and the group shows them right away. Give the other groups and sheets their own look, too. Characters, places, ideas and open questions now stand out at a glance. The colors follow the light and dark style. And nothing is hidden away: a sheet keeps its icon and color in its front matter, a group in its own folder, so they travel along when you move, copy or sync them.</p>
 </details>
+</article>
+</div>
+
+<dialog class="lightbox" aria-label="Video">
+  <button class="lightbox-close" type="button" aria-label="Close">×</button>
+  <video controls playsinline width="1920" height="1080"></video>
+</dialog>
+<script src="/assets/videos.js" defer></script>

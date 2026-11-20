@@ -136,7 +136,8 @@ def guides() -> None:
 
 # Typecase's explainer videos, made with tools/video/ in the app repository, in the order they
 # appear. Title, topic and summary come from <name>.json next to each video.
-VIDEOS = ["icons-and-colors"]
+VIDEOS = ["tour", "icons-and-colors"]
+FEATURED = "tour"  # shown on the full width at the top; the others are tutorials
 # The sections of the video page, in this order; only those with videos are shown.
 TOPICS = [
     "Get started",
@@ -167,32 +168,29 @@ def videos() -> None:
     folder = ROOT / "assets" / "typecase" / "videos"
     folder.mkdir(parents=True, exist_ok=True)
     by_topic: dict[str, list[str]] = {}
+    featured = ""
     for name in VIDEOS:
         made = TYPECASE / "dist" / "videos" / name
         if made.is_dir():
             for suffix in (".webm", ".mp4", ".en.vtt", ".de.vtt", ".jpg", ".json"):
-                shutil.copyfile(made / f"{name}{suffix}", folder / f"{name}{suffix}")
+                if (made / f"{name}{suffix}").is_file():  # videos with music only have no subtitles
+                    shutil.copyfile(made / f"{name}{suffix}", folder / f"{name}{suffix}")
             print("copied video", name)
         if not (folder / f"{name}.json").is_file():
             print(f"skipped: video {name} not found")
             continue
         details = json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
-        url = f"/assets/typecase/videos/{name}"
-        by_topic.setdefault(details["topic"], []).append(
-            f'<h3 id="{name}">{html.escape(details["title"])}</h3>\n<p>{html.escape(details["summary"])}</p>\n'
-            f'<video class="video" controls preload="none" poster="{url}.jpg" width="1920" height="1080">\n'
-            f'  <source src="{url}.webm" type="video/webm">\n'
-            f'  <source src="{url}.mp4" type="video/mp4">\n'
-            f'  <track kind="subtitles" srclang="en" label="English" src="{url}.en.vtt">\n'
-            f'  <track kind="subtitles" srclang="de" label="Deutsch" src="{url}.de.vtt">\n'
-            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>\n'
-            f'<details class="narration"><summary>Read the narration</summary>\n'
-            f'<p>{html.escape(_narration(folder / f"{name}.en.vtt"))}</p>\n</details>'
-        )
+        entry = _video_entry(name, details, folder)
+        if name == FEATURED:
+            featured = entry
+        else:
+            by_topic.setdefault(details["topic"], []).append(entry)
     topics = [topic for topic in TOPICS if topic in by_topic] + [topic for topic in by_topic if topic not in TOPICS]
     contents = " · ".join(f'<a href="#{_anchor(topic)}">{html.escape(topic)}</a>' for topic in topics)
     sections = [
-        f'<h2 id="{_anchor(topic)}">{html.escape(topic)}</h2>\n' + "\n\n".join(by_topic[topic]) for topic in topics
+        f'<h2 id="{_anchor(topic)}">{html.escape(topic)}</h2>\n<div class="video-grid">\n'
+        + "\n".join(by_topic[topic]) + "\n</div>"
+        for topic in topics
     ]
     (SRC / "typecase-videos.html").write_text(
         "title: Videos · Typecase\n"
@@ -200,11 +198,63 @@ def videos() -> None:
         '<p class="muted" style="margin-top: 32px"><a href="/typecase/">Typecase</a> › Videos</p>\n'
         "<h1>Videos</h1>\n"
         '<p class="lead">Short videos that show what Typecase can do, recorded in the app itself.</p>\n'
-        "<p>Each video has subtitles in English and German; turn them on in the player. "
+        + featured
+        + "\n<h2>Tutorials</h2>\n"
+        "<p>Each tutorial shows one thing, with subtitles in English and German; turn them on in the player. "
         "The videos are served from this site, without any video platform, tracking or cookies.</p>\n"
         f'<nav class="topics" aria-label="Topics">{contents}</nav>\n\n'
-        + "\n\n".join(sections) + "\n",
+        + "\n\n".join(sections) + "\n"
+        + LIGHTBOX,
         encoding="utf-8",
+    )
+
+
+# One player for all tutorials; videos.js opens it when a tutorial is clicked and closes it at the end.
+LIGHTBOX = """
+<dialog class="lightbox" aria-label="Video">
+  <button class="lightbox-close" type="button" aria-label="Close">×</button>
+  <video controls playsinline width="1920" height="1080"></video>
+</dialog>
+<script src="/assets/videos.js" defer></script>
+"""
+
+
+def _video_entry(name: str, details: dict, folder: Path) -> str:
+    """The featured video as a player on the full width, a tutorial as a card that opens the lightbox."""
+    url = f"/assets/typecase/videos/{name}"
+    title, summary = html.escape(details["title"]), html.escape(details["summary"])
+    spoken = (folder / f"{name}.en.vtt").is_file()
+    extra = ""
+    if credit := details.get("credit"):
+        text = html.escape(credit["text"])
+        if credit.get("url"):
+            text = f'<a href="{html.escape(credit["url"])}">{text}</a>'
+        extra += f'\n<p class="muted credit">{text}</p>'
+    if spoken:
+        extra += (
+            f'\n<details class="narration"><summary>Read the narration</summary>\n'
+            f'<p>{html.escape(_narration(folder / f"{name}.en.vtt"))}</p>\n</details>'
+        )
+    if name == FEATURED:
+        tracks = (
+            f'  <track kind="subtitles" srclang="en" label="English" src="{url}.en.vtt">\n'
+            f'  <track kind="subtitles" srclang="de" label="Deutsch" src="{url}.de.vtt">\n'
+        ) if spoken else ""
+        return (
+            f'<section class="featured" id="{name}">\n'
+            f'<video class="video" controls preload="none" poster="{url}.jpg" width="1920" height="1080">\n'
+            f'  <source src="{url}.webm" type="video/webm">\n'
+            f'  <source src="{url}.mp4" type="video/mp4">\n{tracks}'
+            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>\n'
+            f'<h2 class="featured-title">{title}</h2>\n<p>{summary}</p>{extra}\n</section>\n'
+        )
+    subtitles = f' data-subtitles="{url}"' if spoken else ""
+    return (
+        f'<article class="video-card" id="{name}">\n'
+        f'<a class="video-thumb" href="{url}.mp4" data-video="{url}"{subtitles} data-title="{title}">'
+        f'<img src="{url}.jpg" alt="" width="1280" height="720" loading="lazy">'
+        f'<span class="play" aria-hidden="true"></span><span class="visually-hidden">Play “{title}”</span></a>\n'
+        f'<h3>{title}</h3>\n<p>{summary}</p>{extra}\n</article>'
     )
 
 
