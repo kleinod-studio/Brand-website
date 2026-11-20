@@ -104,6 +104,11 @@ th { font-weight: 650; }
 .shot-dark { display: none; }
 @media (prefers-color-scheme: dark) { .shot-light { display: none; } .shot-dark { display: block; } }
 
+.video { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--card); box-shadow: 0 12px 40px rgba(42, 37, 80, 0.12); margin: 24px 0 12px; }
+.narration { margin: 0 0 8px; }
+.topics { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 24px 0 0; color: var(--muted); }
+.narration summary { cursor: pointer; color: var(--violet); }
+
 .note { background: var(--lavender); border-radius: 10px; padding: 14px 18px; }
 .prose h2:first-child { margin-top: 32px; }
 

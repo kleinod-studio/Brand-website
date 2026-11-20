@@ -10,6 +10,7 @@ Run:  python3 build.py
 """
 
 import html
+import json
 import re
 import shutil
 import subprocess
@@ -40,6 +41,7 @@ PAGES = {
     "typecase.html": "typecase/index.html",
     "typecase-templates.html": "typecase/templates/index.html",
     "typecase-themes.html": "typecase/themes/index.html",
+    "typecase-videos.html": "typecase/videos/index.html",
     "endpaper.html": "endpaper/index.html",
     "legal-notice.html": "legal-notice/index.html",
     "privacy.html": "privacy/index.html",
@@ -132,8 +134,83 @@ def guides() -> None:
         )
 
 
+# Typecase's explainer videos, made with tools/video/ in the app repository, in the order they
+# appear. Title, topic and summary come from <name>.json next to each video.
+VIDEOS = ["icons-and-colors"]
+# The sections of the video page, in this order; only those with videos are shown.
+TOPICS = [
+    "Get started",
+    "Write",
+    "Organize your texts",
+    "Images, links and footnotes",
+    "Plot with cards",
+    "Export",
+    "Look and feel",
+]
+OUTRO = ("Typecase. Free software", "With love, by")  # the closing lines, left out of the text version
+
+
+def _narration(vtt: Path) -> str:
+    """The spoken text of a video, from its English subtitles."""
+    cues = vtt.read_text(encoding="utf-8").split("\n\n")[1:]
+    lines = [" ".join(cue.splitlines()[1:]) for cue in cues if "-->" in cue]
+    return " ".join(line for line in lines if line and not line.startswith(OUTRO))
+
+
+def _anchor(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def videos() -> None:
+    """Copies the videos with subtitles, thumbnail and details from the app repository's
+    dist/videos/ and writes the video page, grouped by topic."""
+    folder = ROOT / "assets" / "typecase" / "videos"
+    folder.mkdir(parents=True, exist_ok=True)
+    by_topic: dict[str, list[str]] = {}
+    for name in VIDEOS:
+        made = TYPECASE / "dist" / "videos" / name
+        if made.is_dir():
+            for suffix in (".webm", ".mp4", ".en.vtt", ".de.vtt", ".jpg", ".json"):
+                shutil.copyfile(made / f"{name}{suffix}", folder / f"{name}{suffix}")
+            print("copied video", name)
+        if not (folder / f"{name}.json").is_file():
+            print(f"skipped: video {name} not found")
+            continue
+        details = json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
+        url = f"/assets/typecase/videos/{name}"
+        by_topic.setdefault(details["topic"], []).append(
+            f'<h3 id="{name}">{html.escape(details["title"])}</h3>\n<p>{html.escape(details["summary"])}</p>\n'
+            f'<video class="video" controls preload="none" poster="{url}.jpg" width="1920" height="1080">\n'
+            f'  <source src="{url}.webm" type="video/webm">\n'
+            f'  <source src="{url}.mp4" type="video/mp4">\n'
+            f'  <track kind="subtitles" srclang="en" label="English" src="{url}.en.vtt">\n'
+            f'  <track kind="subtitles" srclang="de" label="Deutsch" src="{url}.de.vtt">\n'
+            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>\n'
+            f'<details class="narration"><summary>Read the narration</summary>\n'
+            f'<p>{html.escape(_narration(folder / f"{name}.en.vtt"))}</p>\n</details>'
+        )
+    topics = [topic for topic in TOPICS if topic in by_topic] + [topic for topic in by_topic if topic not in TOPICS]
+    contents = " · ".join(f'<a href="#{_anchor(topic)}">{html.escape(topic)}</a>' for topic in topics)
+    sections = [
+        f'<h2 id="{_anchor(topic)}">{html.escape(topic)}</h2>\n' + "\n\n".join(by_topic[topic]) for topic in topics
+    ]
+    (SRC / "typecase-videos.html").write_text(
+        "title: Videos · Typecase\n"
+        "description: Short videos that show what Typecase can do, with English and German subtitles.\n\n"
+        '<p class="muted" style="margin-top: 32px"><a href="/typecase/">Typecase</a> › Videos</p>\n'
+        "<h1>Videos</h1>\n"
+        '<p class="lead">Short videos that show what Typecase can do, recorded in the app itself.</p>\n'
+        "<p>Each video has subtitles in English and German; turn them on in the player. "
+        "The videos are served from this site, without any video platform, tracking or cookies.</p>\n"
+        f'<nav class="topics" aria-label="Topics">{contents}</nav>\n\n'
+        + "\n\n".join(sections) + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     guides()
+    videos()
     for source, target in PAGES.items():
         meta, content = read_fragment(SRC / source)
         lang = meta.get("lang", "en")
