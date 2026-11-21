@@ -116,6 +116,7 @@ th { font-weight: 650; }
 .featured-player .play { border: 0; padding: 0; cursor: pointer; }
 .credit { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
 .credit a { color: inherit; }
+.small-print { margin-top: 64px; }
 .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 28px; margin: 16px 0 40px; }
 .video-card h3 { margin: 0 0 4px; }
 .video-card > p { margin: 0 0 14px; }

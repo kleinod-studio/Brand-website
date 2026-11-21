@@ -170,6 +170,7 @@ def videos() -> None:
     folder.mkdir(parents=True, exist_ok=True)
     by_topic: dict[str, list[str]] = {}
     featured = ""
+    credits: dict[str, dict] = {}  # music and sounds of all videos, named once at the bottom of the page
     for name in VIDEOS:
         made = TYPECASE / "dist" / "videos" / name
         if made.is_dir():
@@ -181,6 +182,9 @@ def videos() -> None:
             print(f"skipped: video {name} not found")
             continue
         details = json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
+        for key in ("music", "sound_logo"):
+            if piece := details.get(key):
+                credits.setdefault(piece["title"], piece)
         entry = _video_entry(name, details, folder)
         if name == FEATURED:
             featured = entry
@@ -200,6 +204,7 @@ def videos() -> None:
         '<p class="lead">Short videos that show what Typecase can do, recorded in the app itself.</p>\n'
         + featured
         + "\n\n".join(sections) + "\n"
+        + _credits(list(credits.values()))
         + LIGHTBOX.replace("{script_version}", _version(ROOT / "assets" / "videos.js")),
         encoding="utf-8",
     )
@@ -215,21 +220,29 @@ LIGHTBOX = """
 """
 
 
+def _credits(pieces: list[dict]) -> str:
+    """The small print under the videos: who made the music and sounds, with links."""
+    if not pieces:
+        return ""
+
+    def link(text, url):
+        return f'<a href="{html.escape(url)}">{html.escape(text)}</a>' if url else html.escape(text)
+
+    named = "; ".join(
+        f'“{html.escape(piece["title"])}” by {link(piece["artist"], piece.get("artist_url"))} '
+        f'from {link(piece["source"], piece.get("source_url"))}'
+        for piece in pieces
+    )
+    return f'<p class="credit small-print">Music and sounds: {named}.</p>\n'
+
+
 def _video_entry(name: str, details: dict, folder: Path) -> str:
     """Title and summary, then the video: the featured one as a player on the full width, a
-    tutorial as a picture that opens the lightbox. Under it only the music credit or the narration."""
+    tutorial as a picture that opens the lightbox. Under it only the narration, if it has one."""
     url = f"/assets/typecase/videos/{name}"
     title, summary = html.escape(details["title"]), html.escape(details["summary"])
     spoken = (folder / f"{name}.en.vtt").is_file()
     below = ""
-    if music := details.get("music"):
-        def link(text, url):
-            return f'<a href="{html.escape(url)}">{html.escape(text)}</a>' if url else html.escape(text)
-
-        below += (
-            f'\n<p class="credit">Music: “{html.escape(music["title"])}” by '
-            f'{link(music["artist"], music.get("artist_url"))} from {link(music["source"], music.get("source_url"))}</p>'
-        )
     if spoken:
         below += (
             f'\n<details class="narration"><summary>Read the narration</summary>\n'
