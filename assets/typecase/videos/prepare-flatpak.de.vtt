@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:04.101 --> 00:00:17.435
+Typecase kommt als Flatpak, eine Art App, die auf fast jedem Linux läuft. Unter Ubuntu braucht Flatpak eine kurze Einrichtung, nur einmal. Unter Fedora oder Linux Mint ist es schon da – dann kannst du dieses Video überspringen.
+
+00:00:17.736 --> 00:00:26.015
+Alles passiert im Terminal. Öffne es über die Suche oder mit Strg, Alt und T. Keine Sorge: drei Befehle, und du bist fertig.
+
+00:00:26.783 --> 00:00:38.305
+Zuerst installierst du Flatpak selbst. Ubuntu fragt nach deinem Passwort: Tippe es ein – die Zeichen bleiben unsichtbar – und drücke Enter. Fragt Ubuntu, ob es weitergehen soll, drückst du noch einmal Enter.
+
+00:00:38.618 --> 00:00:44.956
+Als Zweites bringst du der App „Software“ Flatpak bei. Damit installierst du Typecase später mit einem Doppelklick.
+
+00:00:48.259 --> 00:00:52.420
+Als Drittes fügst du Flathub hinzu. Von dort holt sich Typecase die Teile, die es braucht.
+
+00:00:55.643 --> 00:01:02.535
+Das war's. Starte deinen Computer einmal neu, damit neue Apps erscheinen. Die Befehle findest du unter diesem Video zum Kopieren.
+
+00:01:03.435 --> 00:01:06.167
+Typecase. Freie Software, gemacht für GNOME.
+
+00:01:06.467 --> 00:01:09.050
+Mit Liebe gemacht von kleinod.studio.

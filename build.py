@@ -137,10 +137,11 @@ def guides() -> None:
 
 # Typecase's explainer videos, made with tools/video/ in the app repository, in the order they
 # appear. Title, topic and summary come from <name>.json next to each video.
-VIDEOS = ["tour", "icons-and-colors"]
+VIDEOS = ["tour", "prepare-flatpak", "install-typecase", "icons-and-colors"]
 FEATURED = "tour"  # shown on the full width at the top; the others are tutorials
 # The sections of the video page, in this order; only those with videos are shown.
 TOPICS = [
+    "Install and update",
     "Get started",
     "Write",
     "Organize your texts",
@@ -238,11 +239,12 @@ def _credits(pieces: list[dict]) -> str:
 
 def _video_entry(name: str, details: dict, folder: Path) -> str:
     """Title and summary, then the video: the featured one as a player on the full width, a
-    tutorial as a picture that opens the lightbox. Under it only the narration, if it has one."""
+    tutorial as a picture that opens the lightbox. Under it the commands it uses, ready to copy,
+    and the narration, if it has them."""
     url = f"/assets/typecase/videos/{name}"
     title, summary = html.escape(details["title"]), html.escape(details["summary"])
     spoken = (folder / f"{name}.en.vtt").is_file()
-    below = ""
+    below = _commands(details.get("commands", []))
     if spoken:
         below += (
             f'\n<details class="narration"><summary>Read the narration</summary>\n'
@@ -272,6 +274,19 @@ def _video_entry(name: str, details: dict, folder: Path) -> str:
         f'<img src="{url}.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span></a>'
         f'{below}\n</article>'
     )
+
+
+def _commands(commands: list[dict]) -> str:
+    """The Terminal commands of a video, each with a line on what it does; a note without a
+    command is a step to take by hand."""
+    if not commands:
+        return ""
+    steps = "".join(
+        f'<p>{html.escape(step["note"])}</p>\n'
+        + (f'<pre><code>{html.escape(step["command"])}</code></pre>\n' if step["command"] else "")
+        for step in commands
+    )
+    return f'\n<div class="commands">\n<h4>Commands</h4>\n{steps}</div>'
 
 
 def _version(path: Path) -> str:

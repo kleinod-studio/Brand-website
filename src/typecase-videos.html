@@ -16,6 +16,45 @@ description: Short videos that show what Typecase can do, with English and Germa
 <button class="play" type="button" aria-label="Play “A tour of Typecase”" hidden></button>
 </div>
 </section>
+<h2 id="install-and-update">Install and update</h2>
+<div class="video-grid">
+<article class="video-card" id="prepare-flatpak">
+<h3>Prepare Flatpak</h3>
+<p>Set up Flatpak on Ubuntu once, so you can install Typecase. On Fedora and Linux Mint, it&#x27;s already there.</p>
+<a class="video-thumb" href="/assets/typecase/videos/prepare-flatpak.mp4" data-video="/assets/typecase/videos/prepare-flatpak" data-subtitles="/assets/typecase/videos/prepare-flatpak" data-title="Prepare Flatpak" aria-label="Play “Prepare Flatpak”"><img src="/assets/typecase/videos/prepare-flatpak.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span></a>
+<div class="commands">
+<h4>Commands</h4>
+<p>Install Flatpak</p>
+<pre><code>sudo apt install flatpak</code></pre>
+<p>Let the Software app install Flatpaks</p>
+<pre><code>sudo apt install gnome-software-plugin-flatpak</code></pre>
+<p>Add Flathub</p>
+<pre><code>sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</code></pre>
+<p>Then restart your computer once.</p>
+</div>
+<details class="narration"><summary>Read the narration</summary>
+<p>Typecase comes as a Flatpak, a kind of app that runs on almost every Linux. On Ubuntu, Flatpak needs a short setup, just once. On Fedora or Linux Mint it&#x27;s already there, so you can skip this video. Everything happens in the Terminal. Open it from the search, or press Control, Alt and T. Don&#x27;t worry: three commands, and you&#x27;re done. First, install Flatpak itself. Ubuntu asks for your password: type it, the letters stay invisible, and press Enter. When Ubuntu asks whether to continue, press Enter again. Second, teach the Software app about Flatpak. That&#x27;s what lets you install Typecase with a double click. Third, add Flathub. Typecase gets the parts it needs from there. That&#x27;s it. Restart your computer once, so that new apps show up. You&#x27;ll find the commands below this video, ready to copy.</p>
+</details>
+</article>
+<article class="video-card" id="install-typecase">
+<h3>Install Typecase</h3>
+<p>Download Typecase, install it with a double click, and add dictionaries for more languages.</p>
+<a class="video-thumb" href="/assets/typecase/videos/install-typecase.mp4" data-video="/assets/typecase/videos/install-typecase" data-subtitles="/assets/typecase/videos/install-typecase" data-title="Install Typecase" aria-label="Play “Install Typecase”"><img src="/assets/typecase/videos/install-typecase.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span></a>
+<div class="commands">
+<h4>Commands</h4>
+<p>Install the downloaded file from your Downloads folder</p>
+<pre><code>sudo flatpak install ~/Downloads/Typecase-*.flatpak</code></pre>
+<p>Add dictionaries for more languages, here German and English (use your language codes)</p>
+<pre><code>sudo flatpak config --set languages &quot;de;en&quot;</code></pre>
+<p>Download them</p>
+<pre><code>sudo flatpak update</code></pre>
+</div>
+<details class="narration"><summary>Read the narration</summary>
+<p>Now let&#x27;s install Typecase. If you&#x27;re on Ubuntu, set up Flatpak first, as shown in the previous video. Open kleinod.studio/typecase in your browser and click Get Typecase. Pick the download for your computer. Most PCs need x86_64. ARM computers, like this one, need the second button. Open your Downloads folder and double-click the file. The Software app opens. Click Install and type your password. Software may warn that Typecase can read and write your files: it needs that to open the folder with your texts. Done. Typecase is now among your apps. Typecase checks your spelling. Dictionaries for your system&#x27;s language usually come along. For more languages, add them in the Terminal, here German and English, and update. Prefer the Terminal for everything? You&#x27;ll find all commands below this video.</p>
+</details>
+</article>
+</div>
+
 <h2 id="organize-your-texts">Organize your texts</h2>
 <div class="video-grid">
 <article class="video-card" id="icons-and-colors">

@@ -1,0 +1,26 @@
+{
+  "title": "Install Typecase",
+  "topic": "Install and update",
+  "summary": "Download Typecase, install it with a double click, and add dictionaries for more languages.",
+  "sound_logo": {
+    "title": "Sound Soul – This Logo Reveal",
+    "artist": "Diamond_Tunes",
+    "artist_url": "https://pixabay.com/users/diamond_tunes-25553362/",
+    "source": "Pixabay",
+    "source_url": "https://pixabay.com/"
+  },
+  "commands": [
+    {
+      "note": "Install the downloaded file from your Downloads folder",
+      "command": "sudo flatpak install ~/Downloads/Typecase-*.flatpak"
+    },
+    {
+      "note": "Add dictionaries for more languages, here German and English (use your language codes)",
+      "command": "sudo flatpak config --set languages \"de;en\""
+    },
+    {
+      "note": "Download them",
+      "command": "sudo flatpak update"
+    }
+  ]
+}

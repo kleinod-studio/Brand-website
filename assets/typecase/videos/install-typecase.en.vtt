@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.102 --> 00:00:10.908
+Now let's install Typecase. If you're on Ubuntu, set up Flatpak first, as shown in the previous video.
+
+00:00:11.212 --> 00:00:16.696
+Open kleinod.studio/typecase in your browser and click Get Typecase.
+
+00:00:22.382 --> 00:00:30.852
+Pick the download for your computer. Most PCs need x86_64. ARM computers, like this one, need the second button.
+
+00:00:32.005 --> 00:00:36.785
+Open your Downloads folder and double-click the file. The Software app opens.
+
+00:00:39.060 --> 00:00:48.469
+Click Install and type your password. Software may warn that Typecase can read and write your files: it needs that to open the folder with your texts.
+
+00:00:48.770 --> 00:00:51.288
+Done. Typecase is now among your apps.
+
+00:00:59.313 --> 00:01:09.747
+Typecase checks your spelling. Dictionaries for your system's language usually come along. For more languages, add them in the Terminal, here German and English, and update.
+
+00:01:14.660 --> 00:01:19.184
+Prefer the Terminal for everything? You'll find all commands below this video.
+
+00:01:20.084 --> 00:01:22.816
+Typecase. Free software, made for GNOME.
+
+00:01:23.116 --> 00:01:25.699
+With love, by kleinod.studio.

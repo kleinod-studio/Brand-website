@@ -1,0 +1,30 @@
+{
+  "title": "Prepare Flatpak",
+  "topic": "Install and update",
+  "summary": "Set up Flatpak on Ubuntu once, so you can install Typecase. On Fedora and Linux Mint, it's already there.",
+  "sound_logo": {
+    "title": "Sound Soul – This Logo Reveal",
+    "artist": "Diamond_Tunes",
+    "artist_url": "https://pixabay.com/users/diamond_tunes-25553362/",
+    "source": "Pixabay",
+    "source_url": "https://pixabay.com/"
+  },
+  "commands": [
+    {
+      "note": "Install Flatpak",
+      "command": "sudo apt install flatpak"
+    },
+    {
+      "note": "Let the Software app install Flatpaks",
+      "command": "sudo apt install gnome-software-plugin-flatpak"
+    },
+    {
+      "note": "Add Flathub",
+      "command": "sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo"
+    },
+    {
+      "note": "Then restart your computer once.",
+      "command": ""
+    }
+  ]
+}
