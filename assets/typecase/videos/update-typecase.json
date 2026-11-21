@@ -1,0 +1,22 @@
+{
+  "title": "Update Typecase",
+  "topic": "Install and update",
+  "summary": "Check your version, download the new one, and install it over the old one in the Terminal.",
+  "commands": [
+    {
+      "note": "Install the new file over the old one (use the name of the file you downloaded)",
+      "command": "sudo flatpak install ~/Downloads/Typecase-1.3.0-x86_64.flatpak"
+    },
+    {
+      "note": "Keep the GNOME runtime and the dictionaries up to date",
+      "command": "sudo flatpak update"
+    }
+  ],
+  "sound_logo": {
+    "title": "Sound Soul – This Logo Reveal",
+    "artist": "Diamond_Tunes",
+    "artist_url": "https://pixabay.com/users/diamond_tunes-25553362/",
+    "source": "Pixabay",
+    "source_url": "https://pixabay.com/"
+  }
+}

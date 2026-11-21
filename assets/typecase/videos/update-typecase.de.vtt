@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.104 --> 00:00:11.977
+Typecase geht nie ins Internet und sucht darum nicht selbst nach Updates. Vergleiche ab und zu deine Version mit der neuesten.
+
+00:00:12.278 --> 00:00:17.976
+Deine Version steht im Menü unter „About Typecase“. Hier ist es 1.2.1.
+
+00:00:21.882 --> 00:00:29.563
+Die neueste Version steht auf kleinod.studio/typecase gleich unter den Knöpfen. Hier ist es 1.3.0.
+
+00:00:29.869 --> 00:00:35.289
+Lade sie herunter, genau wie beim ersten Mal: Klicke auf „Get Typecase“, dann auf den Knopf für deinen Computer.
+
+00:00:39.081 --> 00:00:50.495
+Die App „Software“ kann mit einer heruntergeladenen Datei nicht aktualisieren, darum öffnest du das Terminal. Tippe sudo flatpak install und den Anfang des Dateinamens, dann drücke die Tabulatortaste: Das Terminal ergänzt ihn.
+
+00:00:50.800 --> 00:00:54.706
+Drücke Enter, gib dein Passwort ein und bestätige noch einmal mit Enter.
+
+00:00:57.563 --> 00:01:05.778
+Deine Texte und Einstellungen bleiben, wie sie sind. Öffne Typecase wieder und sieh in „About Typecase“ nach: Jetzt ist es 1.3.0.
+
+00:01:11.032 --> 00:01:20.036
+Tipp: Führe ab und zu sudo flatpak update aus, damit auch die Teile aktuell bleiben, auf denen Typecase aufbaut. Die Befehle findest du unter diesem Video.
+
+00:01:20.936 --> 00:01:23.668
+Typecase. Freie Software, gemacht für GNOME.
+
+00:01:23.968 --> 00:01:26.550
+Mit Liebe gemacht von kleinod.studio.
