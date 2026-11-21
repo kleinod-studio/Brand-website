@@ -82,23 +82,23 @@ description: Typecase is a calm, native Markdown writing app for Linux. Plain fi
 <h3>First time with Flatpak?</h3>
 <p>Flatpak is a format for apps that runs on almost every Linux distribution. Fedora and Linux Mint come with it already set up, so you can skip this step. On Ubuntu, open a terminal and set it up once:</p>
 <pre><code>sudo apt install flatpak
-flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</code></pre>
-<p>The first command installs Flatpak, the second adds Flathub, where the GNOME runtime that Typecase needs comes from. Log out and back in afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>.</p>
+sudo apt install gnome-software-plugin-flatpak
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo</code></pre>
+<p>The first command installs Flatpak, the second lets the Software app install Flatpak files, and the third adds Flathub, where the GNOME runtime that Typecase needs comes from. Restart your computer afterwards, so that Flatpak apps appear in your app launcher. For other distributions, see <a href="https://flatpak.org/setup/">flatpak.org/setup</a>. <a href="/typecase/videos/#prepare-flatpak">Watch the video</a></p>
 <h3>Install Typecase</h3>
 <div class="buttons">
   <a class="button" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.3.0/Typecase-1.3.0-x86_64.flatpak">Download for x86_64</a>
   <a class="button secondary" href="https://github.com/kleinod-studio/Typecase/releases/download/v1.3.0/Typecase-1.3.0-aarch64.flatpak">Download for ARM (aarch64)</a>
 </div>
 <p>Not sure which one you need? Open a terminal and type <code>uname -m</code>. It shows <code>x86_64</code> on most PCs and laptops with an Intel or AMD processor, and <code>aarch64</code> on ARM computers, for example a Raspberry Pi, a laptop with a Snapdragon processor, or Linux in a virtual machine on a Mac with Apple Silicon.</p>
-<p>Then open a terminal in your downloads folder (usually <code>cd ~/Downloads</code>) and install the file you downloaded. For x86_64:</p>
-<pre><code>flatpak install --user Typecase-1.3.0-x86_64.flatpak</code></pre>
-<p>For ARM (aarch64):</p>
-<pre><code>flatpak install --user Typecase-1.3.0-aarch64.flatpak</code></pre>
-<p>The GNOME runtime is fetched from Flathub automatically, and Typecase appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library and settings stay.</p>
+<p>Then double-click the downloaded file in your Downloads folder. The Software app opens; click <em>Install</em> and type your password. Or install it in a terminal:</p>
+<pre><code>sudo flatpak install ~/Downloads/Typecase-1.3.0-x86_64.flatpak</code></pre>
+<p>On ARM computers, the file ends in <code>aarch64.flatpak</code> instead. The GNOME runtime is fetched from Flathub automatically, and Typecase appears in your app launcher. Bundles don't update by themselves; install the next release the same way. Your library and settings stay. <a href="/typecase/videos/#install-typecase">Watch the video</a></p>
 <h3>Spell checking dictionaries</h3>
-<p>The dictionaries come from the GNOME runtime's language packs, which Flatpak installs only for the languages it is set up for. If Typecase says that a dictionary is missing, add the language (here German and English) and update:</p>
-<pre><code>flatpak config --user --set languages "de;en"
-flatpak update --user</code></pre>
+<p>The dictionaries come from the GNOME runtime's language packs, which Flatpak installs only for the languages it is set up for, usually your system's language. For more languages, add them (here German and English) and update:</p>
+<pre><code>sudo flatpak config --set languages "de;en"
+sudo flatpak update</code></pre>
+<p>Installed Typecase with <code>--user</code> before? Then keep using <code>--user</code> without <code>sudo</code> for it: <code>flatpak install --user</code>, <code>flatpak config --user --set languages "de;en"</code> and <code>flatpak update --user</code>.</p>
 <h3>Build from source</h3>
 <pre><code>git clone --branch v1.3.0 https://github.com/kleinod-studio/Typecase.git
 cd Typecase

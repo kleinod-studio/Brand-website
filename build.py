@@ -286,7 +286,7 @@ def _commands(commands: list[dict]) -> str:
         + (f'<pre><code>{html.escape(step["command"])}</code></pre>\n' if step["command"] else "")
         for step in commands
     )
-    return f'\n<div class="commands">\n<h4>Commands</h4>\n{steps}</div>'
+    return f'\n<details class="commands"><summary>Show the commands</summary>\n{steps}</details>'
 
 
 def _version(path: Path) -> str:
