@@ -1,6 +1,20 @@
-// Video page: a tutorial opens in the lightbox and plays; the lightbox closes when the video ends,
+// Video page: the tour starts in place; a tutorial opens in the lightbox and plays; the lightbox closes when the video ends,
 // with Escape, the close button or a click beside the video. Without JavaScript the link opens the MP4.
 (function () {
+  // The tour: only its picture and a play button until it is started, like the tutorials.
+  document.querySelectorAll(".featured-player").forEach(function (player) {
+    const video = player.querySelector("video");
+    const button = player.querySelector(".play");
+    video.controls = false;
+    button.hidden = false;
+    button.addEventListener("click", function () {
+      button.remove();
+      video.controls = true;
+      video.focus();
+      video.play().catch(function () {});
+    });
+  });
+
   const box = document.querySelector(".lightbox");
   if (!box || typeof box.showModal !== "function") return;
   const video = box.querySelector("video");
@@ -19,7 +33,7 @@
     return element;
   }
 
-  document.querySelectorAll(".video-thumb").forEach(function (link) {
+  document.querySelectorAll("a.video-thumb").forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();
       opener = link;

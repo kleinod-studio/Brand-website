@@ -243,10 +243,13 @@ def _video_entry(name: str, details: dict, folder: Path) -> str:
         return (
             f'<section class="featured" id="{name}">\n'
             f'<h2 class="featured-title">{title}</h2>\n<p>{summary}</p>\n'
-            f'<video class="video" controls preload="none" poster="{url}.jpg" width="1920" height="1080">\n'
+            # videos.js hides the player's controls until the play button is pressed
+            f'<div class="video-thumb featured-player">\n'
+            f'<video controls preload="none" poster="{url}.jpg" width="1920" height="1080" playsinline>\n'
             f'  <source src="{url}.webm" type="video/webm">\n'
             f'  <source src="{url}.mp4" type="video/mp4">\n{tracks}'
-            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>{below}\n</section>\n'
+            f'  <p><a href="{url}.mp4">Download the video</a></p>\n</video>\n'
+            f'<button class="play" type="button" aria-label="Play “{title}”" hidden></button>\n</div>{below}\n</section>\n'
         )
     subtitles = f' data-subtitles="{url}"' if spoken else ""
     return (
