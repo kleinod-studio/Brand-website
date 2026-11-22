@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:04.008 --> 00:00:08.937
+Typecase writes in Markdown: plain text with a few characters for formatting.
+
+00:00:09.237 --> 00:00:22.508
+Why? Your texts stay ordinary text files. Any app on any computer can open them, today and in twenty years. And you write without fiddling with layout: the look comes later, when you export to PDF or Word.
+
+00:00:22.809 --> 00:00:26.501
+You don't have to learn the characters first. Here are the few you need.
+
+00:00:26.801 --> 00:00:30.066
+A hash sign starts a heading, two of them a smaller one.
+
+00:00:30.604 --> 00:00:37.538
+Two asterisks around a word make it bold, one makes it italic. The characters stay, but fade into the background.
+
+00:00:37.839 --> 00:00:42.619
+A dash starts a list. Press Enter, and the next item begins by itself.
+
+00:00:44.594 --> 00:00:51.593
+Rather not type the characters? Select a word and use the bar at the bottom. It also turns a line into a heading.
+
+00:00:53.490 --> 00:01:00.232
+Or use the keyboard: Ctrl+B for bold, Ctrl+I for italic, Ctrl+1 to 3 for headings.
+
+00:01:00.532 --> 00:01:03.734
+That's all you need. Everything else is just writing.
+
+00:01:04.634 --> 00:01:07.366
+Typecase. Free software, made for GNOME.
+
+00:01:07.666 --> 00:01:10.248
+With love, by kleinod.studio.
