@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.009 --> 00:00:08.960
+Bilder, Links und Fußnoten sind auch Markdown. Typecase hält sie dir aus dem Weg.
+
+00:00:09.260 --> 00:00:18.734
+Im Text klappen sie zu kleinen farbigen Pills zusammen: gelb für Bilder, blau für Links, grün für Fußnoten. Gehst du mit dem Cursor darauf, klappt die Pill auf.
+
+00:00:19.034 --> 00:00:26.993
+Für ein Bild klickst du auf den Bild-Knopf, ziehst eins hinein oder fügst es ein. Typecase legt eine Kopie als Anhang zum Blatt.
+
+00:00:27.292 --> 00:00:33.480
+Mit einem Doppelklick legst du Größe, Ausrichtung und Bildunterschrift fest, dazu eine Beschreibung für Menschen, die es nicht sehen können.
+
+00:00:35.456 --> 00:00:43.137
+Für einen Link markierst du ein Wort und drückst Strg+K, dann tippst oder fügst du die Adresse ein. Mit Strg+Klick öffnest du ihn im Browser.
+
+00:00:43.437 --> 00:00:50.180
+Eine Fußnote steht genau dort, wo sie hingehört: Drücke Strg+Alt+F und tippe die Anmerkung. Oder nimm die Knöpfe in der Leiste.
+
+00:00:50.479 --> 00:00:55.857
+Beim Export bekommt das Bild seine Unterschrift, und die Fußnoten wandern an den Fuß der Seite.
+
+00:00:56.157 --> 00:01:00.233
+Alles bleibt reiner Text, und dein Text bleibt gut lesbar.
+
+00:01:01.133 --> 00:01:03.865
+Typecase. Freie Software, gemacht für GNOME.
+
+00:01:04.165 --> 00:01:06.747
+Mit Liebe gemacht von kleinod.studio.

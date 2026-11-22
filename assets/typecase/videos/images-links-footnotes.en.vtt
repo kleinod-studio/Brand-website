@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.009 --> 00:00:08.960
+Pictures, links and footnotes are Markdown, too. Typecase keeps them out of your way.
+
+00:00:09.260 --> 00:00:18.734
+In your text they fold into small colored pills: yellow for pictures, blue for links, green for footnotes. Move the cursor onto one, and it opens up.
+
+00:00:19.034 --> 00:00:26.993
+To add a picture, click the image button, drag one in, or paste it. Typecase keeps a copy with the sheet, as an attachment.
+
+00:00:27.292 --> 00:00:33.480
+Double-click it to set its size, alignment and caption, and a description for people who can't see it.
+
+00:00:35.456 --> 00:00:43.137
+For a link, select a word and press Ctrl+K, then type or paste the address. Ctrl+click opens it in your browser.
+
+00:00:43.437 --> 00:00:50.180
+A footnote goes right where it belongs: press Ctrl+Alt+F and type the note. Or use the buttons in the bar.
+
+00:00:50.479 --> 00:00:55.857
+When you export, the picture gets its caption and the footnotes move to the bottom of the page.
+
+00:00:56.157 --> 00:01:00.233
+Everything stays plain text, and your writing stays easy to read.
+
+00:01:01.133 --> 00:01:03.865
+Typecase. Free software, made for GNOME.
+
+00:01:04.165 --> 00:01:06.747
+With love, by kleinod.studio.
