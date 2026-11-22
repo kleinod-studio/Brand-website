@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:04.012 --> 00:00:10.626
+Your library is a folder on your computer. Each sheet is a Markdown file, and each group is a folder.
+
+00:00:10.926 --> 00:00:14.383
+Press Ctrl+Shift+N for a new group, and give it a name.
+
+00:00:16.034 --> 00:00:20.899
+Ctrl+N adds a sheet to it. Start with a heading, and the sheet takes its name.
+
+00:00:23.968 --> 00:00:27.681
+To rename a sheet or group, press F2, or right-click it.
+
+00:00:31.095 --> 00:00:35.341
+Drag entries into the order you want, or use Alt and the arrow keys.
+
+00:00:35.640 --> 00:00:40.570
+Drop an entry onto another group to move it there, or choose Move to from the menu.
+
+00:00:42.816 --> 00:00:47.383
+Duplicate makes a copy right below, handy for trying out another version.
+
+00:00:47.683 --> 00:00:51.716
+What you delete goes to the trash of your computer, so you can get it back.
+
+00:00:53.473 --> 00:00:56.568
+Just files and folders, ordered the way you think.
+
+00:00:57.468 --> 00:01:00.200
+Typecase. Free software, made for GNOME.
+
+00:01:00.500 --> 00:01:03.082
+With love, by kleinod.studio.

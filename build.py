@@ -137,7 +137,7 @@ def guides() -> None:
 
 # Typecase's explainer videos, made with tools/video/ in the app repository, in the order they
 # appear. Title, topic and summary come from <name>.json next to each video.
-VIDEOS = ["tour", "prepare-flatpak", "install-typecase", "update-typecase", "first-steps", "markdown", "images-links-footnotes", "focus-mode", "spell-checking", "icons-and-colors"]
+VIDEOS = ["tour", "prepare-flatpak", "install-typecase", "update-typecase", "first-steps", "markdown", "images-links-footnotes", "focus-mode", "spell-checking", "sheets-and-groups", "icons-and-colors", "keywords-and-search", "group-view-and-outline", "properties-notes-attachments", "cards", "writing-goals", "export", "export-a-group"]
 FEATURED = "tour"  # shown on the full width at the top; the others are tutorials
 # The sections of the video page, in this order; only those with videos are shown.
 TOPICS = [
