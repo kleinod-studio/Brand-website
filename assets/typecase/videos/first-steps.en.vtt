@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.100 --> 00:00:09.840
+The first time you open Typecase, it asks for your library: the folder where your texts live.
+
+00:00:12.608 --> 00:00:16.406
+Pick a folder, or create a new one, like this one in Documents.
+
+00:00:20.096 --> 00:00:27.586
+Writing on more than one computer? Choose a folder that Nextcloud, Syncthing or another sync service keeps up to date.
+
+00:00:27.887 --> 00:00:34.245
+Now this folder is your library. Its subfolders become groups, its Markdown files become sheets.
+
+00:00:34.545 --> 00:00:36.744
+Click the plus button for a new sheet.
+
+00:00:37.175 --> 00:00:40.846
+Start writing. Your first heading becomes the name of the sheet.
+
+00:00:46.061 --> 00:00:53.273
+There's no Save button: Typecase saves as you type, into a plain Markdown file that any text editor can open.
+
+00:00:53.906 --> 00:00:57.641
+Next, learn how to format your text, with or without Markdown.
+
+00:00:58.541 --> 00:01:01.273
+Typecase. Free software, made for GNOME.
+
+00:01:01.573 --> 00:01:04.156
+With love, by kleinod.studio.
